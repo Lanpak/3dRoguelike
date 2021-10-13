@@ -169,23 +169,25 @@ public class LevelGeneration : MonoBehaviour {
 			Vector2 drawPos = room.gridPos;
 			drawPos.x *= 8;//aspect ratio of map mesh
 			drawPos.y *= 8;
-			//drawPos.z *= 8;
 			//create map obj and assign its variables
-			//MapmeshSelector mapper = 
-			GameObject newRoom = Object.Instantiate(Cube, drawPos, Quaternion.identity); //.GetComponent<MapmeshSelector>(); 
-			//if(room == rooms[(int)FindBossRoom().x, (int)FindBossRoom().y])
-   //         {
-			//	mapper.type = 2;
-   //         }
-   //         else
-   //         {
-			//	mapper.type = room.type;
-			//}
+			
+			GameObject newRoom = Object.Instantiate(Cube, drawPos, Quaternion.identity); 
+			MapModelSelector mapper = newRoom.GetComponent<MapModelSelector>();
+			
+			
+			if(room == rooms[(int)FindBossRoom().x, (int)FindBossRoom().y])
+			         {
+				mapper.type = 2;
+			         }
+			         else
+			         {
+				mapper.type = room.type;
+			}
 
-			//mapper.up = room.doorTop;
-			//mapper.down = room.doorBot;
-			//mapper.right = room.doorRight;
-			//mapper.left = room.doorLeft;
+			mapper.up = room.doorTop;
+			mapper.down = room.doorBot;
+			mapper.right = room.doorRight;
+			mapper.left = room.doorLeft;
 			newRoom.transform.RotateAround(Vector3.zero, Vector3.right, 90);		
 		}
 	}
