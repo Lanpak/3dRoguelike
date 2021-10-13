@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelGeneration : MonoBehaviour {
 
 	public GameObject Cube;
+	
 
 	public Vector2 worldSize = new Vector2(8,8);
 	Room[,] rooms;
@@ -139,7 +140,7 @@ public class LevelGeneration : MonoBehaviour {
 				continue; //skip where there is no room
 			}
 			Vector2 drawPos = room.gridPos;
-			drawPos.x *= 8;//aspect ratio of map sprite
+			drawPos.x *= 8;//aspect ratio of map mesh
 			drawPos.y *= 8;
 			//create map obj and assign its variables
 			MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>(); 
@@ -166,11 +167,12 @@ public class LevelGeneration : MonoBehaviour {
 				continue; //skip where there is no room
 			}
 			Vector2 drawPos = room.gridPos;
-			drawPos.x *= 8;//aspect ratio of map sprite
+			drawPos.x *= 8;//aspect ratio of map mesh
 			drawPos.y *= 8;
+			//drawPos.z *= 8;
 			//create map obj and assign its variables
-			//MapSpriteSelector mapper = 
-			Object.Instantiate(Cube, drawPos, Quaternion.identity); //.GetComponent<MapSpriteSelector>(); 
+			//MapmeshSelector mapper = 
+			GameObject newRoom = Object.Instantiate(Cube, drawPos, Quaternion.identity); //.GetComponent<MapmeshSelector>(); 
 			//if(room == rooms[(int)FindBossRoom().x, (int)FindBossRoom().y])
    //         {
 			//	mapper.type = 2;
@@ -184,6 +186,7 @@ public class LevelGeneration : MonoBehaviour {
 			//mapper.down = room.doorBot;
 			//mapper.right = room.doorRight;
 			//mapper.left = room.doorLeft;
+			newRoom.transform.RotateAround(Vector3.zero, Vector3.right, 90);		
 		}
 	}
 	void SetRoomDoors(){

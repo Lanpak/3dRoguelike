@@ -32,20 +32,20 @@ public class MapModelSelector : MonoBehaviour
 				{
 					if (left)
 					{
-						model.mesh = modelUDRL.mesh;
+						model.mesh = modelUDRL.sharedMesh;
 					}
 					else
 					{
-						model.mesh = modelDRU.mesh;
+						model.mesh = modelDRU.sharedMesh;
 					}
 				}
 				else if (left)
 				{
-					model.mesh = modelULD.mesh;
+					model.mesh = modelULD.sharedMesh;
 				}
 				else
 				{
-					model.mesh = modelUD.mesh;
+					model.mesh = modelUD.sharedMesh;
 				}
 			}
 			else
@@ -54,20 +54,20 @@ public class MapModelSelector : MonoBehaviour
 				{
 					if (left)
 					{
-						model.mesh = modelRUL.mesh;
+						model.mesh = modelRUL.sharedMesh;
 					}
 					else
 					{
-						model.mesh = modelUR.mesh;
+						model.mesh = modelUR.sharedMesh;
 					}
 				}
 				else if (left)
 				{
-					model.mesh = modelUL.mesh;
+					model.mesh = modelUL.sharedMesh;
 				}
 				else
 				{
-					model.mesh = modelU.mesh;
+					model.mesh = modelU.sharedMesh;
 				}
 			}
 			return;
@@ -78,20 +78,20 @@ public class MapModelSelector : MonoBehaviour
 			{
 				if (left)
 				{
-					model.mesh = modelLDR.mesh;
+					model.mesh = modelLDR.sharedMesh;
 				}
 				else
 				{
-					model.mesh = modelDR.mesh;
+					model.mesh = modelDR.sharedMesh;
 				}
 			}
 			else if (left)
 			{
-				model.mesh = modelDL.mesh;
+				model.mesh = modelDL.sharedMesh;
 			}
 			else
 			{
-				model.mesh = modelD.mesh;
+				model.mesh = modelD.sharedMesh;
 			}
 			return;
 		}
@@ -99,16 +99,16 @@ public class MapModelSelector : MonoBehaviour
 		{
 			if (left)
 			{
-				model.mesh = modelRL.mesh;
+				model.mesh = modelRL.sharedMesh;
 			}
 			else
 			{
-				model.mesh = modelR.mesh;
+				model.mesh = modelR.sharedMesh;
 			}
 		}
 		else
 		{
-			model.mesh = modelL.mesh;
+			model.mesh = modelL.sharedMesh;
 		}
 	}
 
