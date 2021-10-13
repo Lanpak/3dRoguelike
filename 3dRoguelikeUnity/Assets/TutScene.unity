@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f288b11a4078a5040b0f6657b4b4e36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cube: {fileID: 0}
+  Cube: {fileID: 7857094323002155946, guid: 9a53385c8f6fc3442a59f813de82bc21, type: 3}
   worldSize: {x: 10, y: 10}
   numberOfRooms: 7
   roomWhiteObj: {fileID: 1975706786332780, guid: fafde5e10a0d6d34c898906d1a3e0e9d, type: 3}

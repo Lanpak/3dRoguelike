@@ -20,8 +20,8 @@ public class LevelGeneration : MonoBehaviour {
 		gridSizeY = Mathf.RoundToInt(worldSize.y);
 		CreateRooms(); //lays out the actual map
 		SetRoomDoors(); //assigns the doors where rooms would connect
-		SetBossRoom();
 		DrawMap(); //instantiates objects to make up a map
+		//DrawMiniMap();
 		
 	}
 	void CreateRooms(){
@@ -131,7 +131,7 @@ public class LevelGeneration : MonoBehaviour {
 		}
 		return ret;
 	}
-	void DrawMap(){
+	void DrawMiniMap(){
 
 		Debug.Log(FindBossRoom());
 		foreach (Room room in rooms){
@@ -156,6 +156,34 @@ public class LevelGeneration : MonoBehaviour {
 			mapper.down = room.doorBot;
 			mapper.right = room.doorRight;
 			mapper.left = room.doorLeft;
+		}
+	}
+	void DrawMap(){
+
+		Debug.Log(FindBossRoom());
+		foreach (Room room in rooms){
+			if (room == null){
+				continue; //skip where there is no room
+			}
+			Vector2 drawPos = room.gridPos;
+			drawPos.x *= 8;//aspect ratio of map sprite
+			drawPos.y *= 8;
+			//create map obj and assign its variables
+			//MapSpriteSelector mapper = 
+			Object.Instantiate(Cube, drawPos, Quaternion.identity); //.GetComponent<MapSpriteSelector>(); 
+			//if(room == rooms[(int)FindBossRoom().x, (int)FindBossRoom().y])
+   //         {
+			//	mapper.type = 2;
+   //         }
+   //         else
+   //         {
+			//	mapper.type = room.type;
+			//}
+
+			//mapper.up = room.doorTop;
+			//mapper.down = room.doorBot;
+			//mapper.right = room.doorRight;
+			//mapper.left = room.doorLeft;
 		}
 	}
 	void SetRoomDoors(){
@@ -277,12 +305,5 @@ public class LevelGeneration : MonoBehaviour {
 		return bossRoom;
 	}
 
-
-    void SetBossRoom()
-    {
-		Vector2 bossroomCoords = FindBossRoom();
-
-		Room bossroom = rooms[(int)bossroomCoords.x, (int)bossroomCoords.y];	
-	}
 
 }

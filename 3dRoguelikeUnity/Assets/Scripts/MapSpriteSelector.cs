@@ -7,14 +7,21 @@ public class MapSpriteSelector : MonoBehaviour {
 	public Sprite 	spU, spD, spR, spL, spUD, spRL, spUR, spUL, spDR, spDL, spULD, spRUL, spDRU, spLDR, spUDRL;
 	public bool up, down, left, right;
 	public int type; // 0: normal, 1: enter, 2: boss
+	public bool is3d;
 	public Color normalColor, enterColor, bossColor;
 	Color mainColor;
 	SpriteRenderer rend;
 	void Start () {
-		rend = GetComponent<SpriteRenderer>();
-		mainColor = normalColor;
-		PickSprite();
-		PickColor();
+
+        if (!is3d)
+        {
+			rend = GetComponent<SpriteRenderer>();
+			mainColor = normalColor;
+			PickSprite();
+			PickColor();
+		}
+		
+		
 	}
 	void PickSprite(){ //picks correct sprite based on the four door bools
 		if (up){
@@ -79,6 +86,7 @@ public class MapSpriteSelector : MonoBehaviour {
         {
 			mainColor = bossColor;
         }
-		rend.color = mainColor;
+        rend.color = mainColor;
+		
 	}
 }
