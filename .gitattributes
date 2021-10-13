@@ -1,1 +1,2 @@
-*.csharp linguist-detectable=true  
+* linguist-vendored
+*.csharp linguist-vendored=true 
