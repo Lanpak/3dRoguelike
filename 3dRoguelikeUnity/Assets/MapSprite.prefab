@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1975706786332780}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f8bd375a6a3f70442a9144d0e96fda57, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7c48bc86d3e710e43900277f2fad8d20, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,21 +95,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e0fb6307cbcc743b90b347d37d1a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spU: {fileID: 21300000, guid: c7819f663fd32ea4a909fc558a782366, type: 3}
-  spD: {fileID: 21300000, guid: 2d5cef4f1c136714bac69db478275e54, type: 3}
-  spR: {fileID: 21300000, guid: 7dd9ed293c5769042a3cc3ccf914b72e, type: 3}
-  spL: {fileID: 21300000, guid: 1be95bf45af18c947af88845614c3935, type: 3}
-  spUD: {fileID: 21300000, guid: 726d4adc2c35adf49a696520e3bb3c01, type: 3}
-  spRL: {fileID: 21300000, guid: 6c4b0dcd7fe99814f827564a16e8d269, type: 3}
-  spUR: {fileID: 21300000, guid: db48da81c2a4b704aa94a0c563bbbd43, type: 3}
-  spUL: {fileID: 21300000, guid: 17ffd6230c49db44cb783fb1ff7ea752, type: 3}
-  spDR: {fileID: 21300000, guid: 0a6570fa33f9b3e4b9893b960ada287f, type: 3}
-  spDL: {fileID: 21300000, guid: 8edf18727d42f7946bda92f95f8ab8a9, type: 3}
-  spULD: {fileID: 21300000, guid: 98b4fa921cfec394da8adbbe80a534dd, type: 3}
-  spRUL: {fileID: 21300000, guid: 76c98fed3144d94458de2ad9eadc04e9, type: 3}
-  spDRU: {fileID: 21300000, guid: 4e19e0d3b88063b46ad8574093fe3e66, type: 3}
-  spLDR: {fileID: 21300000, guid: b3403c31138e49a4f82c695d69220e47, type: 3}
-  spUDRL: {fileID: 21300000, guid: f8bd375a6a3f70442a9144d0e96fda57, type: 3}
+  spU: {fileID: 21300000, guid: 4e16b16444d1e5f41aaa3f4703e30ee7, type: 3}
+  spD: {fileID: 21300000, guid: 572a370f35cee104db890090b60d88b3, type: 3}
+  spR: {fileID: 21300000, guid: 0c03b673d54cd4a40ad1df7fbe9e1add, type: 3}
+  spL: {fileID: 21300000, guid: e41e94f5caa94f446943345e541988d3, type: 3}
+  spUD: {fileID: 21300000, guid: 417801da35a71d74eadde459716cb55a, type: 3}
+  spRL: {fileID: 21300000, guid: abbc0b03f33a3e34087e10cfbc125741, type: 3}
+  spUR: {fileID: 21300000, guid: 76db3c017fd58f944b3251e7d90961be, type: 3}
+  spUL: {fileID: 21300000, guid: bd25b28ea0720ce47bb8477c8e7fc5e2, type: 3}
+  spDR: {fileID: 21300000, guid: 162420b62399a064c98ac3d44945538d, type: 3}
+  spDL: {fileID: 21300000, guid: 67e8e1db71d4f744db714ff491e52dde, type: 3}
+  spULD: {fileID: 21300000, guid: 6a431159ed9ccff41814d06e7f19ff0c, type: 3}
+  spRUL: {fileID: 21300000, guid: 77ed89015e663bf419ccf636faa542cd, type: 3}
+  spDRU: {fileID: 21300000, guid: 483c7395493431947970bbb751b51a65, type: 3}
+  spLDR: {fileID: 21300000, guid: d8d094dd345407242a637ab939fa1da7, type: 3}
+  spUDRL: {fileID: 21300000, guid: 7c48bc86d3e710e43900277f2fad8d20, type: 3}
   up: 0
   down: 0
   left: 0
