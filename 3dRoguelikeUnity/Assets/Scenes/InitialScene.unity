@@ -285,11 +285,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a92a362a719fb468a484da2eb801ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: ar1
   damage: 0
-  firingSpeed: 1.65
+  firingSpeed: 3
   reloadSpeed: 0
   fullAuto: 1
-  magSize: 0
+  magSize: 30
+  isShotgun: 0
+  bulletsPerShot: 6
+  spreadX: 1
+  spreadY: 1
+  spreadZ: 1
+  amount: 0.02
+  maxAmount: 0.06
+  smoothAmount: 6
   recoilX: -2
   recoilY: 2
   recoilZ: 0.35
@@ -300,6 +309,7 @@ MonoBehaviour:
   crosshairs: {fileID: 0}
   recoilScript: {fileID: 1422879008}
   anim: {fileID: 337673874}
+  bulletsInMag: 0
 --- !u!95 &337673874
 Animator:
   serializedVersion: 3
@@ -346,7 +356,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 943796680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 337673872}
