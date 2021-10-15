@@ -5,16 +5,10 @@ public class Recoil : MonoBehaviour
     private Vector3 currentRotation;
     private Vector3 targetRotation;
 
-    [SerializeField] private GunScript gs;
+    public GunScript gs;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    
+    
     void Update()
     {
         targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, gs.returnSpeed * Time.deltaTime);

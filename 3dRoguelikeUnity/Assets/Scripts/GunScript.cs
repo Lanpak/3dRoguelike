@@ -34,6 +34,7 @@ public class GunScript : MonoBehaviour
     [Header("ParticleSystems")]
 
     [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] private ParticleSystem bulletEffect;
 
 
 
@@ -128,6 +129,7 @@ public class GunScript : MonoBehaviour
             else
             {
                 muzzleFlash.Play();
+                bulletEffect.Play();
                 bulletsInMag--;
                 recoilScript.RecoilFire();
                 anim.Play(name + "_fire");
