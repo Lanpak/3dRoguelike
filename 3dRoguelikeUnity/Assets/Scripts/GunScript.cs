@@ -18,16 +18,10 @@ public class GunScript : MonoBehaviour
     [SerializeField] private float spreadY;
     [SerializeField] private float spreadZ;
 
-
-
-
-
     [Header("Sway")]
     public float amount;
     public float maxAmount;
     public float smoothAmount;
-    
-
 
     [Header("Recoil")]
     public float recoilX;
@@ -35,6 +29,12 @@ public class GunScript : MonoBehaviour
     public float recoilZ;
     public float snappiness;
     public float returnSpeed;
+
+
+    [Header("ParticleSystems")]
+
+    [SerializeField] private ParticleSystem muzzleFlash;
+
 
 
     [Header("References")]
@@ -111,6 +111,7 @@ public class GunScript : MonoBehaviour
         {
             if (isShotgun)
             {
+                muzzleFlash.Play();
                 bulletsInMag--;
                 recoilScript.RecoilFire();
                 anim.Play(name + "_fire");
@@ -126,6 +127,7 @@ public class GunScript : MonoBehaviour
             }
             else
             {
+                muzzleFlash.Play();
                 bulletsInMag--;
                 recoilScript.RecoilFire();
                 anim.Play(name + "_fire");
@@ -179,3 +181,5 @@ public class GunScript : MonoBehaviour
         return direction.normalized;
     }
 }
+
+
