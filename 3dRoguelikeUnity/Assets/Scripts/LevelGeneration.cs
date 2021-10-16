@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelGeneration : MonoBehaviour {
 
 	public GameObject Cube;
-	
+	public GameObject playerPrefab;
 
 	public Vector2 worldSize = new Vector2(8,8);
 	Room[,] rooms;
@@ -22,8 +22,10 @@ public class LevelGeneration : MonoBehaviour {
 		CreateRooms(); //lays out the actual map
 		SetRoomDoors(); //assigns the doors where rooms would connect
 		DrawMap(); //instantiates objects to make up a map
-		//DrawMiniMap();
-		
+				   //DrawMiniMap();
+
+		Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+
 	}
 	void CreateRooms(){
 		//setup
@@ -140,8 +142,8 @@ public class LevelGeneration : MonoBehaviour {
 				continue; //skip where there is no room
 			}
 			Vector2 drawPos = room.gridPos;
-			drawPos.x *= 8;//aspect ratio of map mesh
-			drawPos.y *= 8;
+			drawPos.x *= 16;//aspect ratio of map mesh
+			drawPos.y *= 16;
 			//create map obj and assign its variables
 			MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>(); 
 			if(room == rooms[(int)FindBossRoom().x, (int)FindBossRoom().y])
@@ -167,8 +169,8 @@ public class LevelGeneration : MonoBehaviour {
 				continue; //skip where there is no room
 			}
 			Vector2 drawPos = room.gridPos;
-			drawPos.x *= 8;//aspect ratio of map mesh
-			drawPos.y *= 8;
+			drawPos.x *= 16;//aspect ratio of map mesh
+			drawPos.y *= 16;
 			//create map obj and assign its variables
 			
 			GameObject newRoom = Object.Instantiate(Cube, drawPos, Quaternion.identity); 
@@ -176,11 +178,11 @@ public class LevelGeneration : MonoBehaviour {
 			
 			
 			if(room == rooms[(int)FindBossRoom().x, (int)FindBossRoom().y])
-			         {
+			{
 				mapper.type = 2;
-			         }
-			         else
-			         {
+			}
+			else
+			{
 				mapper.type = room.type;
 			}
 
@@ -188,7 +190,8 @@ public class LevelGeneration : MonoBehaviour {
 			mapper.down = room.doorBot;
 			mapper.right = room.doorRight;
 			mapper.left = room.doorLeft;
-			newRoom.transform.RotateAround(Vector3.zero, Vector3.right, 90);		
+			newRoom.transform.RotateAround(Vector3.zero, Vector3.right, 90);
+			newRoom.transform.position = new Vector3(newRoom.transform.position.x, 0, newRoom.transform.position.z);
 		}
 	}
 	void SetRoomDoors(){

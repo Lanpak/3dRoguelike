@@ -10,7 +10,13 @@ public class MapModelSelector : MonoBehaviour
 	public int type; // 0: normal, 1: enter, 2: boss
 	public Color normalColor, enterColor, bossColor;
 	Color mainColor;
+	public MeshCollider collider;
+	public RoomLogic roomLogic;
 	MeshFilter model;
+
+	public GameObject[] roomLayouts = new GameObject[1];
+
+
 	void Start()
 	{
 
@@ -20,7 +26,8 @@ public class MapModelSelector : MonoBehaviour
 		mainColor = normalColor;
 		Pickmesh();
 		//PickColor();
-	
+		SetupRoomLogic();
+		MakeInterior();
 	}
 	void Pickmesh()
 	{ //picks correct mesh based on the four door bools
@@ -33,19 +40,23 @@ public class MapModelSelector : MonoBehaviour
 					if (left)
 					{
 						model.mesh = modelUDRL.sharedMesh;
+						collider.sharedMesh = modelUDRL.sharedMesh;
 					}
 					else
 					{
 						model.mesh = modelDRU.sharedMesh;
+						collider.sharedMesh = modelDRU.sharedMesh;
 					}
 				}
 				else if (left)
 				{
 					model.mesh = modelULD.sharedMesh;
+					collider.sharedMesh = modelULD.sharedMesh;
 				}
 				else
 				{
 					model.mesh = modelUD.sharedMesh;
+					collider.sharedMesh = modelUD.sharedMesh;
 				}
 			}
 			else
@@ -55,19 +66,23 @@ public class MapModelSelector : MonoBehaviour
 					if (left)
 					{
 						model.mesh = modelRUL.sharedMesh;
+						collider.sharedMesh = modelRUL.sharedMesh;
 					}
 					else
 					{
 						model.mesh = modelUR.sharedMesh;
+						collider.sharedMesh = modelUR.sharedMesh;
 					}
 				}
 				else if (left)
 				{
 					model.mesh = modelUL.sharedMesh;
+					collider.sharedMesh = modelUL.sharedMesh;
 				}
 				else
 				{
 					model.mesh = modelU.sharedMesh;
+					collider.sharedMesh = modelU.sharedMesh;
 				}
 			}
 			return;
@@ -79,19 +94,23 @@ public class MapModelSelector : MonoBehaviour
 				if (left)
 				{
 					model.mesh = modelLDR.sharedMesh;
+					collider.sharedMesh = modelLDR.sharedMesh;
 				}
 				else
 				{
 					model.mesh = modelDR.sharedMesh;
+					collider.sharedMesh = modelDR.sharedMesh;
 				}
 			}
 			else if (left)
 			{
 				model.mesh = modelDL.sharedMesh;
+				collider.sharedMesh = modelDL.sharedMesh;
 			}
 			else
 			{
 				model.mesh = modelD.sharedMesh;
+				collider.sharedMesh = modelD.sharedMesh;
 			}
 			return;
 		}
@@ -100,15 +119,18 @@ public class MapModelSelector : MonoBehaviour
 			if (left)
 			{
 				model.mesh = modelRL.sharedMesh;
+				collider.sharedMesh = modelRL.sharedMesh;
 			}
 			else
 			{
 				model.mesh = modelR.sharedMesh;
+				collider.sharedMesh = modelR.sharedMesh;
 			}
 		}
 		else
 		{
 			model.mesh = modelL.sharedMesh;
+			collider.sharedMesh = modelL.sharedMesh;
 		}
 	}
 
@@ -129,4 +151,32 @@ public class MapModelSelector : MonoBehaviour
 	//	model.color = mainColor;
 
 	//}
+
+	private void SetupRoomLogic()
+    {
+        if (!down)
+        {
+			roomLogic.doors[0] = null;
+        }
+		
+		if (!up)
+        {
+			roomLogic.doors[1] = null;
+        }
+		
+		if (!left)
+        {
+			roomLogic.doors[2] = null;
+        }
+		
+		if (!right)
+        {
+			roomLogic.doors[3] = null;
+        }
+    }
+
+	private void MakeInterior()
+    {
+		//Instantiate(roomLayouts[Random.Range(0, roomLayouts.Length - 1)], transform.position);
+    }
 }

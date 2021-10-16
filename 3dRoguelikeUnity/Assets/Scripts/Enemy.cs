@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAi : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public NavMeshAgent agent;
 
@@ -12,9 +12,12 @@ public class EnemyAi : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    public RoomLogic roomLogic;
+
     public float health;
 
     public bool isDead = false;
+    public bool isDisabled = true;
 
 
     public bool isAttacking;
@@ -40,19 +43,19 @@ public class EnemyAi : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-
-        Invoke("DestroyEnemy", 14f);
     }
 
     private void Update()
     {
-
-        if (!isDead)
+        if (!isDisabled)
         {
-            HandleAi();
-            HandleAnimation();
+            if (!isDead)
+            {
+                
+                HandleAi();
+                HandleAnimation();
+            }
         }
-        
     }
     private void HandleAnimation()
     {
@@ -86,10 +89,12 @@ public class EnemyAi : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange)
         {
             Patroling();
+            isChasing = true;
+            isAttacking = false;
         }
 
 
-        if (playerInSightRange && !playerInAttackRange)
+        if ((playerInSightRange && !playerInAttackRange) || !HandleLineOfSight())
         {
             ChasePlayer();
             isChasing = true;
@@ -97,11 +102,39 @@ public class EnemyAi : MonoBehaviour
         }
         if (playerInAttackRange && playerInSightRange)
         {
-            AttackPlayer();
-            isChasing = false;
-            isAttacking = true;
+            if (HandleLineOfSight())
+            {
+                AttackPlayer();
+                isChasing = false;
+                isAttacking = true;
+            }
+            
+            
         }
     }
+
+    private bool HandleLineOfSight()
+    {
+        bool isLos = false;
+
+        RaycastHit hit;
+        var rayDirection = player.position - transform.position;
+        if (Physics.Raycast(transform.position, rayDirection, out hit))
+        {
+            if (hit.transform == player)
+            {
+                isLos = true;
+                Debug.Log("enemy can see the player!");
+            }
+            else
+            {
+                isLos = false;
+                Debug.Log("there is something obstructing the view");
+            }
+        }
+        return isLos;
+    }
+
 
 
     private void Patroling()
@@ -166,10 +199,11 @@ public class EnemyAi : MonoBehaviour
     }
     private void DestroyEnemy()
     {
+        agent.SetDestination(transform.position);
         anim.Play("Death");
         isDead = true;
+        roomLogic.EnemyDied();
         
-        //Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()
