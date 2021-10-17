@@ -154,7 +154,7 @@ public class GunScript : MonoBehaviour
                 if (!isProjectile)
                 {
                     RaycastHit hit;
-                    if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit))
+                    if (Physics.Raycast(camera.transform.position, camera.transform.position, out hit))
                     {
                         if (hit.collider.gameObject.transform.root.CompareTag("Shootable"))
                         {
@@ -169,7 +169,7 @@ public class GunScript : MonoBehaviour
                     proj.GetComponent<Projectile>().damage = damage;
                     Rigidbody rb = proj.GetComponent<Rigidbody>();
                     rb.AddForce(transform.up * arcForce, ForceMode.Impulse);
-                    rb.AddTorque(new Vector3(Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10)), ForceMode.Impulse);
+                    rb.AddTorque(new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), ForceMode.Impulse);
                     rb.AddForce(transform.forward * shootForce, ForceMode.Impulse);
                 }
                 
@@ -207,14 +207,20 @@ public class GunScript : MonoBehaviour
 
     private Vector3 HandleSpread()
     {
-        Vector3 targetPos = camera.transform.position + camera.transform.forward;
+        Transform pos = camera.transform;
+
+        if (isProjectile)
+        {
+            pos = shootPoint.transform;
+        }
+        Vector3 targetPos = pos.position + pos.forward;
         targetPos = new Vector3
             (
             targetPos.x + Random.Range(-spreadX, spreadX),
             targetPos.y + Random.Range(-spreadY, spreadY),
             targetPos.z + Random.Range(-spreadZ, spreadZ)
             );
-        Vector3 direction = targetPos - camera.transform.position;
+        Vector3 direction = targetPos - pos.position;
         return direction.normalized;
     }
 }

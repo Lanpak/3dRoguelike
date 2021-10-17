@@ -6,6 +6,11 @@ public class Enemy : MonoBehaviour
 {
     public NavMeshAgent agent;
 
+    [SerializeField] private float spreadX;
+    [SerializeField] private float spreadY;
+    [SerializeField] private float spreadZ;
+
+
     public Animator anim;
 
     public Transform player;
@@ -41,7 +46,6 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("ok");
         player = GameObject.Find("Player(Clone)").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -168,6 +172,19 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(player.position);
     }
 
+    private Vector3 HandleSpread()
+    {
+        Vector3 targetPos = shootPoint.position + shootPoint.forward;
+        targetPos = new Vector3
+            (
+            targetPos.x + Random.Range(-spreadX, spreadX),
+            targetPos.y + Random.Range(-spreadY, spreadY),
+            targetPos.z + Random.Range(-spreadZ, spreadZ)
+            );
+        Vector3 direction = targetPos - shootPoint.position;
+        return direction.normalized;
+    }
+
     private void AttackPlayer()
     {
         //Make sure enemy doesn't move
@@ -179,7 +196,7 @@ public class Enemy : MonoBehaviour
         {
             ///Attack code here
             Rigidbody rb = Instantiate(projectile, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * shootForce, ForceMode.Impulse);
+            rb.AddForce(HandleSpread() * shootForce, ForceMode.Impulse);
             //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
             ///End of attack code
 

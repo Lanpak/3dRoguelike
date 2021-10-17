@@ -21,8 +21,11 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision coll)
     {
-        if (coll.transform.root.CompareTag("Shootable") && !collided)
+        Debug.Log(coll.collider.gameObject.transform.root);
+        
+        if (coll.collider.gameObject.transform.root.CompareTag("Shootable") && !collided)
         {
+            Debug.Log("should be doing damage");
             collided = true;
             coll.transform.root.GetComponent<Enemy>().TakeDamage(damage);
         }

@@ -29,7 +29,7 @@ public class MapModelSelector : MonoBehaviour
 		Pickmesh();
 		//PickColor();
 		SetupRoomLogic();
-		MakeInterior();
+		MakeInterior(4);
 		
 	}
 	void Pickmesh()
@@ -178,20 +178,17 @@ public class MapModelSelector : MonoBehaviour
         }
     }
 
-	private void MakeInterior()
+	private void MakeInterior(int difficulty)
     {
 		if(type == 0)
         {
 			GameObject decor = Instantiate(roomLayouts[Random.Range(0, roomLayouts.Length - 1)], gameObject.transform.position, Quaternion.identity, gameObject.transform);
 			decor.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 			decor.transform.eulerAngles = new Vector3(decor.transform.eulerAngles.x + 90, decor.transform.eulerAngles.y, decor.transform.eulerAngles.z);
+			decor.GetComponent<RoomLayout>().SpawnEnemies(difficulty);
 			
 
 		}
 	}
 
-	public void BakeNavMesh()
-	{
-		gameObject.GetComponent<NavMeshSurface>().BuildNavMesh();
-	}
 }

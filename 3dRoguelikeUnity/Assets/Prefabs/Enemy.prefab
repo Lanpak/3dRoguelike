@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 7289212243427522598}
   m_Layer: 0
   m_Name: mixamorig:Hips
-  m_TagString: Untagged
+  m_TagString: Shootable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -675,6 +675,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 3131842870124365394}
+  spreadX: 0.21
+  spreadY: 0.24
+  spreadZ: 0.12
   anim: {fileID: 3131842870124365392}
   player: {fileID: 0}
   whatIsGround:
@@ -683,7 +686,6 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 2048
-  roomLogic: {fileID: 0}
   deathEffect: {fileID: 5137742616418530313, guid: 8e100d740209e6848b35bfc61a8bcb9b,
     type: 3}
   health: 100
@@ -698,7 +700,7 @@ MonoBehaviour:
     type: 3}
   sightRange: 20
   attackRange: 10
-  shootForce: 1
+  shootForce: 10
   playerInSightRange: 0
   playerInAttackRange: 0
   shootPoint: {fileID: 3131842869072515049}

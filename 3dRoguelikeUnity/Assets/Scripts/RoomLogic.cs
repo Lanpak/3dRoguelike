@@ -7,6 +7,7 @@ public class RoomLogic : MonoBehaviour
     private bool triggered = false;
     public GameObject[] doors = new GameObject[4];
     public GameObject room;
+    public GameObject enemies;
 
 
     private bool doorsOpen = true;
@@ -20,7 +21,15 @@ public class RoomLogic : MonoBehaviour
             triggered = true;
             Debug.Log("Player entered room!");
             MoveDoors(true);
-            //ready enemies
+            ReadyEnemies();
+        }
+    }
+
+    public void ReadyEnemies()
+    {
+        for (int i = 0; i < enemies.transform.childCount; i++)
+        {
+            enemies.transform.GetChild(i).GetComponent<Enemy>().isDisabled = false;
         }
     }
 
