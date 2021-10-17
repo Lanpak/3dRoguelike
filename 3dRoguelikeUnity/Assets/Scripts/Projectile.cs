@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 public class Projectile : MonoBehaviour
 {
     public int damage;
     private bool collided = false;
     public float lifetime = 7f;
-
+    public string enemyName;
 
     void Start()
     {
@@ -19,15 +20,25 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
+
+    
+
+    
+
     private void OnCollisionEnter(Collision coll)
     {
-        Debug.Log(coll.collider.gameObject.transform.root);
-        
-        if (coll.collider.gameObject.transform.root.CompareTag("Shootable") && !collided)
+
+
+
+        if (coll.transform.CompareTag("Shootable") && !collided)
         {
             Debug.Log("should be doing damage");
             collided = true;
-            coll.transform.root.GetComponent<Enemy>().TakeDamage(damage);
+            coll.transform.GetComponent<EnemySegment>().RelayDamage(damage);
+        }
+        else if(coll.transform.root.CompareTag("Player"))
+        {
+            //take damage
         }
     }
 

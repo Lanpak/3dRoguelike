@@ -125,3 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6814779ab9e4a9c48a475e601cd2e447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  lifetime: 7
+  enemyName: Enemy(Clone)

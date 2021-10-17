@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float spreadY;
     [SerializeField] private float spreadZ;
 
-
+    private RoomLogic roomLogic;
     public Animator anim;
 
     public Transform player;
@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        roomLogic = transform.parent.parent.GetChild(1).gameObject.GetComponent<RoomLogic>();
         player = GameObject.Find("Player(Clone)").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -129,12 +130,10 @@ public class Enemy : MonoBehaviour
             if (hit.transform == player)
             {
                 isLos = true;
-                Debug.Log("enemy can see the player!");
             }
             else
             {
                 isLos = false;
-                Debug.Log("there is something obstructing the view");
             }
         }
         return isLos;
@@ -224,6 +223,7 @@ public class Enemy : MonoBehaviour
             
             agent.SetDestination(transform.position);
             Instantiate(deathEffect, transform.position, Quaternion.identity);
+            roomLogic.EnemyDied();
             Destroy(gameObject);
         }
     }

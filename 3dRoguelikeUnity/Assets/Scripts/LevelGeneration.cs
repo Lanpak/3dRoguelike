@@ -237,7 +237,6 @@ public class LevelGeneration : MonoBehaviour {
 
 		Vector2 bossRoom = new Vector2(gridSizeX, gridSizeY);
 
-		Debug.Log("test");
 		int totalRooms = 0;
 		
 		for (int x = 0; x < ((gridSizeX * 2)); x++)

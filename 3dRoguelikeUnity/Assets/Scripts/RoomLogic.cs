@@ -8,20 +8,19 @@ public class RoomLogic : MonoBehaviour
     public GameObject[] doors = new GameObject[4];
     public GameObject room;
     public GameObject enemies;
+    [SerializeField] private int howManyLive;
 
 
-    private bool doorsOpen = true;
 
     private void OnTriggerEnter(Collider coll)
     {
-        Debug.Log("collision");
+        
 
         if(coll.gameObject.layer == 11 && !triggered && room.GetComponent<MapModelSelector>().type == 0)
         {
             triggered = true;
             Debug.Log("Player entered room!");
-            MoveDoors(true);
-            ReadyEnemies();
+            StartRoom();
         }
     }
 
@@ -35,7 +34,24 @@ public class RoomLogic : MonoBehaviour
 
     public void EnemyDied()
     {
+        howManyLive--;
 
+        if(howManyLive == 0)
+        {
+            FinishRoom();
+        }
+    }
+
+    private void FinishRoom()
+    {
+        MoveDoors(false);
+    }
+    
+    private void StartRoom()
+    {
+        MoveDoors(true);
+        ReadyEnemies();
+        howManyLive = enemies.transform.childCount;
     }
 
     private void MoveDoors(bool closing)
