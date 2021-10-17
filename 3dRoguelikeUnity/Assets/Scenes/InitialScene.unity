@@ -190,6 +190,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4104255612729777868, guid: 9e2fb32fada5d8a449e2f41507c183e9,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -6153663081527216589, guid: b5c7ccb742ea2704d88992882f0123e4,
+        type: 3}
+    - target: {fileID: 4104255612729777868, guid: 9e2fb32fada5d8a449e2f41507c183e9,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e2fb32fada5d8a449e2f41507c183e9, type: 3}
 --- !u!1001 &737572945
@@ -606,7 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sharedProfile: {fileID: 11400000, guid: 0b52d96ba4f659a4583929bf681d31ec, type: 2}
-  isGlobal: 0
+  isGlobal: 1
   blendDistance: 0
   weight: 1
   priority: 0
@@ -648,6 +659,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8525804992208154941, guid: 8ceb617f24f52a94bba703b7586fabce,
+        type: 3}
+      propertyPath: damage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525804992208154941, guid: 8ceb617f24f52a94bba703b7586fabce,
+        type: 3}
+      propertyPath: arcForce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525804992208154941, guid: 8ceb617f24f52a94bba703b7586fabce,
+        type: 3}
+      propertyPath: shootForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525804992208154941, guid: 8ceb617f24f52a94bba703b7586fabce,
+        type: 3}
+      propertyPath: projectileSize
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8525804992951982440, guid: 8ceb617f24f52a94bba703b7586fabce,
         type: 3}
       propertyPath: m_RootOrder

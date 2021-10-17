@@ -2257,6 +2257,7 @@ MonoBehaviour:
   reloadSpeed: 0
   fullAuto: 1
   magSize: 30
+  shootForce: 1
   isShotgun: 0
   bulletsPerShot: 6
   spreadX: 1
@@ -2270,6 +2271,11 @@ MonoBehaviour:
   recoilZ: 0.35
   snappiness: 6
   returnSpeed: 2
+  isProjectile: 1
+  projectile: {fileID: 4921403861754054452, guid: 51bd4bd79112a034d9533daeac5d88ed,
+    type: 3}
+  shootPoint: {fileID: 1357272241153740924}
+  projectileSize: 0
   muzzleFlash: {fileID: 1160518789965226290}
   player: {fileID: 0}
   camera: {fileID: 0}

@@ -5,11 +5,12 @@ public class GunScript : MonoBehaviour
 {
     [Header("Gun Settings")]
     [SerializeField] private string name;
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
     [SerializeField] private float firingSpeed;
     [SerializeField] private float reloadSpeed;
     [SerializeField] private bool fullAuto;
     [SerializeField] private int magSize;
+
 
     [Header("Shotgun Settings")]
     [SerializeField] private bool isShotgun = false;
@@ -29,6 +30,14 @@ public class GunScript : MonoBehaviour
     public float recoilZ;
     public float snappiness;
     public float returnSpeed;
+
+    [Header("Projectile")]
+    [SerializeField] private bool isProjectile;
+    public GameObject projectile;
+    public Transform shootPoint;
+    public float projectileSize;
+    [SerializeField] private float shootForce;
+    [SerializeField] private float arcForce;
 
 
     [Header("ParticleSystems")]
@@ -117,11 +126,22 @@ public class GunScript : MonoBehaviour
                 anim.Play(name + "_fire");
                 for (int i = 0; i < bulletsPerShot; i++)
                 {
-                    
-                    RaycastHit hit;
-                    if (Physics.Raycast(camera.transform.position,HandleSpread(), out hit))
+
+                    if (!isProjectile)
                     {
-                        Debug.Log(hit.transform.name);
+                        RaycastHit hit;
+                        if (Physics.Raycast(camera.transform.position, HandleSpread(), out hit))
+                        {
+                            if (hit.collider.gameObject.transform.root.CompareTag("Shootable"))
+                            {
+                                hit.collider.gameObject.transform.root.GetComponent<Enemy>().TakeDamage(damage);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Rigidbody rb = Instantiate(projectile, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+                        rb.AddForce(HandleSpread() * shootForce, ForceMode.Impulse);
                     }
                 }
             }
@@ -131,11 +151,28 @@ public class GunScript : MonoBehaviour
                 bulletsInMag--;
                 recoilScript.RecoilFire();
                 anim.Play(name + "_fire");
-                RaycastHit hit;
-                if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit))
+                if (!isProjectile)
                 {
-                    Debug.Log(hit.transform.name);
+                    RaycastHit hit;
+                    if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit))
+                    {
+                        if (hit.collider.gameObject.transform.root.CompareTag("Shootable"))
+                        {
+                            hit.collider.gameObject.transform.root.GetComponent<Enemy>().TakeDamage(damage);
+                        }
+                    }
                 }
+                else
+                {
+                    GameObject proj = Instantiate(projectile, shootPoint.position, Quaternion.identity);
+                    proj.transform.localScale = new Vector3(projectileSize, projectileSize, projectileSize);
+                    proj.GetComponent<Projectile>().damage = damage;
+                    Rigidbody rb = proj.GetComponent<Rigidbody>();
+                    rb.AddForce(transform.up * arcForce, ForceMode.Impulse);
+                    rb.AddTorque(new Vector3(Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10)), ForceMode.Impulse);
+                    rb.AddForce(transform.forward * shootForce, ForceMode.Impulse);
+                }
+                
             }
 
 

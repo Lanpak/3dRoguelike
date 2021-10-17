@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
 
     public RoomLogic roomLogic;
 
+    public GameObject deathEffect;
+
     public float health;
 
     public bool isDead = false;
@@ -199,12 +201,18 @@ public class Enemy : MonoBehaviour
     }
     private void DestroyEnemy()
     {
-        agent.SetDestination(transform.position);
-        anim.Play("Death");
-        isDead = true;
-        roomLogic.EnemyDied();
-        
+        if (!isDead)
+        {
+            isDead = true;
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+            
+            agent.SetDestination(transform.position);
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
+
+    
 
     private void OnDrawGizmosSelected()
     {
