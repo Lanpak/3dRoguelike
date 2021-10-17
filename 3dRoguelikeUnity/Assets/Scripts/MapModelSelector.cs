@@ -180,8 +180,15 @@ public class MapModelSelector : MonoBehaviour
 
 	private void MakeInterior()
     {
-		//Instantiate(roomLayouts[Random.Range(0, roomLayouts.Length - 1)], transform.position);
-    }
+		if(type == 0)
+        {
+			GameObject decor = Instantiate(roomLayouts[Random.Range(0, roomLayouts.Length - 1)], gameObject.transform.position, Quaternion.identity, gameObject.transform);
+			decor.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+			decor.transform.eulerAngles = new Vector3(decor.transform.eulerAngles.x + 90, decor.transform.eulerAngles.y, decor.transform.eulerAngles.z);
+			
+
+		}
+	}
 
 	public void BakeNavMesh()
 	{

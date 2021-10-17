@@ -12,8 +12,6 @@ public class Enemy : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public RoomLogic roomLogic;
-
     public GameObject deathEffect;
 
     public float health;
@@ -43,7 +41,8 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        Debug.Log("ok");
+        player = GameObject.Find("Player(Clone)").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 

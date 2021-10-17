@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class LevelGeneration : MonoBehaviour {
 
 	public GameObject Cube;
 	public GameObject playerPrefab;
+	public GameObject ground;
+	public GameObject enemy;
 
 	public Vector2 worldSize = new Vector2(8,8);
 	Room[,] rooms;
@@ -23,9 +27,12 @@ public class LevelGeneration : MonoBehaviour {
 		SetRoomDoors(); //assigns the doors where rooms would connect
 		DrawMap(); //instantiates objects to make up a map
 				   //DrawMiniMap();
-		Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
 
-        
+		Invoke("BakeMesh",0.5f);
+		
+		
+
+		Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
 
 	}
 	void CreateRooms(){
@@ -174,7 +181,7 @@ public class LevelGeneration : MonoBehaviour {
 			drawPos.y *= 16;
 			//create map obj and assign its variables
 			
-			GameObject newRoom = Object.Instantiate(Cube, drawPos, Quaternion.identity);
+			GameObject newRoom = Object.Instantiate(Cube, drawPos, Quaternion.identity); 
 			MapModelSelector mapper = newRoom.GetComponent<MapModelSelector>();
 			
 			
@@ -193,7 +200,6 @@ public class LevelGeneration : MonoBehaviour {
 			mapper.left = room.doorLeft;
 			newRoom.transform.RotateAround(Vector3.zero, Vector3.right, 90);
 			newRoom.transform.position = new Vector3(newRoom.transform.position.x, 0, newRoom.transform.position.z);
-			mapper.BakeNavMesh();
 		}
 	}
 	void SetRoomDoors(){
@@ -315,5 +321,10 @@ public class LevelGeneration : MonoBehaviour {
 		return bossRoom;
 	}
 
+	void BakeMesh()
+    {
+		ground.GetComponent<NavMeshSurface>().BuildNavMesh();
+
+	}
 
 }
