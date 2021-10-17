@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class MapModelSelector : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public class MapModelSelector : MonoBehaviour
 		//PickColor();
 		SetupRoomLogic();
 		MakeInterior();
+		
 	}
 	void Pickmesh()
 	{ //picks correct mesh based on the four door bools
@@ -179,4 +182,9 @@ public class MapModelSelector : MonoBehaviour
     {
 		//Instantiate(roomLayouts[Random.Range(0, roomLayouts.Length - 1)], transform.position);
     }
+
+	public void BakeNavMesh()
+	{
+		gameObject.GetComponent<NavMeshSurface>().BuildNavMesh();
+	}
 }

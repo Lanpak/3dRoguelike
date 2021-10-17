@@ -23,8 +23,9 @@ public class LevelGeneration : MonoBehaviour {
 		SetRoomDoors(); //assigns the doors where rooms would connect
 		DrawMap(); //instantiates objects to make up a map
 				   //DrawMiniMap();
-
 		Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+
+        
 
 	}
 	void CreateRooms(){
@@ -173,7 +174,7 @@ public class LevelGeneration : MonoBehaviour {
 			drawPos.y *= 16;
 			//create map obj and assign its variables
 			
-			GameObject newRoom = Object.Instantiate(Cube, drawPos, Quaternion.identity); 
+			GameObject newRoom = Object.Instantiate(Cube, drawPos, Quaternion.identity);
 			MapModelSelector mapper = newRoom.GetComponent<MapModelSelector>();
 			
 			
@@ -192,6 +193,7 @@ public class LevelGeneration : MonoBehaviour {
 			mapper.left = room.doorLeft;
 			newRoom.transform.RotateAround(Vector3.zero, Vector3.right, 90);
 			newRoom.transform.position = new Vector3(newRoom.transform.position.x, 0, newRoom.transform.position.z);
+			mapper.BakeNavMesh();
 		}
 	}
 	void SetRoomDoors(){

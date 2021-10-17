@@ -1380,7 +1380,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7126193129781715291, guid: 7ee290c88843d2c49be639ef4dea8a73, type: 3}
+  - {fileID: 2100000, guid: 0111b6e2b6a8f564da74b37e61a50f5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1635,7 +1635,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7126193129781715291, guid: 7ee290c88843d2c49be639ef4dea8a73, type: 3}
+  - {fileID: 2100000, guid: 0111b6e2b6a8f564da74b37e61a50f5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2257,7 +2257,6 @@ MonoBehaviour:
   reloadSpeed: 0
   fullAuto: 1
   magSize: 30
-  shootForce: 1
   isShotgun: 0
   bulletsPerShot: 6
   spreadX: 1
@@ -2276,6 +2275,8 @@ MonoBehaviour:
     type: 3}
   shootPoint: {fileID: 1357272241153740924}
   projectileSize: 0
+  shootForce: 1
+  arcForce: 0
   muzzleFlash: {fileID: 1160518789965226290}
   player: {fileID: 0}
   camera: {fileID: 0}

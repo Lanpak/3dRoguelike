@@ -5183,6 +5183,12 @@ MonoBehaviour:
   recoilZ: 0.35
   snappiness: 7
   returnSpeed: 1.5
+  isProjectile: 0
+  projectile: {fileID: 0}
+  shootPoint: {fileID: 0}
+  projectileSize: 0
+  shootForce: 0
+  arcForce: 0
   muzzleFlash: {fileID: 8399771232223753203}
   player: {fileID: 8525804992951982444}
   camera: {fileID: 8525804992944209504}

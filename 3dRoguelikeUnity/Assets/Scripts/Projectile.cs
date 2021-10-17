@@ -6,6 +6,18 @@ public class Projectile : MonoBehaviour
 {
     public int damage;
     private bool collided = false;
+    public float lifetime = 20f;
+
+
+    void Start()
+    {
+        Invoke("DespawnObj", lifetime);
+    }
+
+    private void DespawnObj()
+    {
+        Destroy(gameObject);
+    }
 
     private void OnCollisionEnter(Collision coll)
     {
