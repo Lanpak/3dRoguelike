@@ -10,6 +10,7 @@ public class LevelGeneration : MonoBehaviour {
 	public GameObject playerPrefab;
 	public GameObject ground;
 	public GameObject enemy;
+	public Transform miniMapParent;
 
 	public Vector2 worldSize = new Vector2(8,8);
 	Room[,] rooms;
@@ -26,7 +27,7 @@ public class LevelGeneration : MonoBehaviour {
 		CreateRooms(); //lays out the actual map
 		SetRoomDoors(); //assigns the doors where rooms would connect
 		DrawMap(); //instantiates objects to make up a map
-				   //DrawMiniMap();
+		DrawMiniMap();
 
 		Invoke("BakeMesh",0.5f);
 		
@@ -37,7 +38,7 @@ public class LevelGeneration : MonoBehaviour {
 	}
 	void CreateRooms(){
 		//setup
-		rooms = new Room[gridSizeX * 2,gridSizeY * 2];
+		rooms = new Room[gridSizeX * 2, gridSizeY * 2];
 		rooms[gridSizeX,gridSizeY] = new Room(Vector2.zero, 1);
 		takenPositions.Insert(0,Vector2.zero);
 		Vector2 checkPos = Vector2.zero;
@@ -150,10 +151,10 @@ public class LevelGeneration : MonoBehaviour {
 				continue; //skip where there is no room
 			}
 			Vector2 drawPos = room.gridPos;
-			drawPos.x *= 16;//aspect ratio of map mesh
-			drawPos.y *= 16;
+			drawPos.x *= 25;//aspect ratio of map mesh
+			drawPos.y *= 25;
 			//create map obj and assign its variables
-			MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>(); 
+			MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, new Vector2(drawPos.x + miniMapParent.parent.transform.position.x, drawPos.y + miniMapParent.parent.transform.position.y), Quaternion.identity, miniMapParent).GetComponent<MapSpriteSelector>(); 
 			if(room == rooms[(int)FindBossRoom().x, (int)FindBossRoom().y])
             {
 				mapper.type = 2;
@@ -162,7 +163,7 @@ public class LevelGeneration : MonoBehaviour {
             {
 				mapper.type = room.type;
 			}
-
+			mapper.position = new Vector2(drawPos.x + miniMapParent.parent.transform.position.x, drawPos.y + miniMapParent.parent.transform.position.y);
 			mapper.up = room.doorTop;
 			mapper.down = room.doorBot;
 			mapper.right = room.doorRight;
@@ -193,7 +194,7 @@ public class LevelGeneration : MonoBehaviour {
 			{
 				mapper.type = room.type;
 			}
-
+			mapper.pos = room.gridPos;
 			mapper.up = room.doorTop;
 			mapper.down = room.doorBot;
 			mapper.right = room.doorRight;

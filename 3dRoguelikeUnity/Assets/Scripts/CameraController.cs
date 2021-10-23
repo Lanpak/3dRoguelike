@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private Transform cameraHolderTransform;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private Transform arrowTransform;
 
     private float xRot;
 
@@ -22,8 +23,10 @@ public class CameraController : MonoBehaviour
         
         cameraHolderTransform.localRotation = Quaternion.Euler(new Vector3(xRot, 0, 0));
 
+
         
 
         playerTransform.Rotate(new Vector3(0, mouseX, 0));
+
     }
 }

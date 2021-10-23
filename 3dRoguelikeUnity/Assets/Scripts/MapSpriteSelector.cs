@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MapSpriteSelector : MonoBehaviour
 {
@@ -9,11 +10,14 @@ public class MapSpriteSelector : MonoBehaviour
 	public bool up, down, left, right;
 	public int type; // 0: normal, 1: enter, 2: boss
 	public Color normalColor, enterColor, bossColor;
+
+	public Vector2 position = Vector2.zero;
+
 	Color mainColor;
-	SpriteRenderer rend;
+	Image rend;
 	void Start()
 	{
-		rend = GetComponent<SpriteRenderer>();
+		rend = GetComponent<Image>();
 		mainColor = normalColor;
 		PickSprite();
 		PickColor();

@@ -8,20 +8,33 @@ public class RoomLogic : MonoBehaviour
     public GameObject[] doors = new GameObject[4];
     public GameObject room;
     public GameObject enemies;
+    public GameObject player;
+    public Vector2 position = Vector2.zero;
+    
     [SerializeField] private int howManyLive;
 
-
+    void Start()
+    {
+        player = GameObject.Find("Player(Clone)");
+        position = room.GetComponent<MapModelSelector>().pos;
+    }
 
     private void OnTriggerEnter(Collider coll)
     {
-        
-
-        if(coll.gameObject.layer == 11 && !triggered && room.GetComponent<MapModelSelector>().type == 0)
+        if(coll.gameObject.layer == 11)
         {
-            triggered = true;
-            Debug.Log("Player entered room!");
-            StartRoom();
+            player.GetComponent<PlayerManager>().MoveIntoRoom((int)position.x, (int)position.y);
+
+            if (!triggered && room.GetComponent<MapModelSelector>().type == 0)
+            {
+                triggered = true;
+                Debug.Log("Player entered room!");
+                StartRoom();
+            }
         }
+
+
+        
     }
 
     public void ReadyEnemies()

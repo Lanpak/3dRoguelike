@@ -47,6 +47,7 @@ MonoBehaviour:
   mouseSensitivity: 500
   cameraHolderTransform: {fileID: 8525804992646440051}
   playerTransform: {fileID: 8525804992951982440}
+  arrowTransform: {fileID: 0}
 --- !u!1 &8525804992944209508
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +285,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primary: {fileID: 0}
   secondary: {fileID: 0}
+  mouseSensitivity: 500
+  cam: {fileID: 8525804992944209504}
+  playerIcon: {fileID: 7339169831900905925, guid: a3b7d5fc08ca8344c8f31fc8d500baae,
+    type: 3}
+  arrow: {fileID: 7339169831900905925, guid: a3b7d5fc08ca8344c8f31fc8d500baae, type: 3}
+  miniMapPosition: {fileID: 0}
+  miniMapContainer: {fileID: 0}
 --- !u!1 &8525804993272260274
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +387,11 @@ MonoBehaviour:
   recoilZ: 0.35
   snappiness: 7
   returnSpeed: 1.5
+  bulletIcon: {fileID: 0}
+  ammmoCounter: {fileID: 0}
+  gunIcon: {fileID: 0}
+  gunIconSlot: {fileID: 0}
+  uiBulletScaleFactor: 0
   isProjectile: 0
   projectile: {fileID: 0}
   shootPoint: {fileID: 0}

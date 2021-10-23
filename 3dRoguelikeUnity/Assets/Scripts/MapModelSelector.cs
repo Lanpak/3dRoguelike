@@ -17,6 +17,8 @@ public class MapModelSelector : MonoBehaviour
 	MeshFilter model;
 	public int numberOfEnemies;
 
+	public Vector2 pos;
+
 	public GameObject[] roomLayouts = new GameObject[1];
 
 
