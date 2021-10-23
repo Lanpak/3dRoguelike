@@ -289,7 +289,6 @@ MonoBehaviour:
   cam: {fileID: 8525804992944209504}
   playerIcon: {fileID: 7339169831900905925, guid: a3b7d5fc08ca8344c8f31fc8d500baae,
     type: 3}
-  arrow: {fileID: 7339169831900905925, guid: a3b7d5fc08ca8344c8f31fc8d500baae, type: 3}
   miniMapPosition: {fileID: 0}
   miniMapContainer: {fileID: 0}
 --- !u!1 &8525804993272260274
@@ -391,7 +390,8 @@ MonoBehaviour:
   ammmoCounter: {fileID: 0}
   gunIcon: {fileID: 0}
   gunIconSlot: {fileID: 0}
-  uiBulletScaleFactor: 0
+  gunName: 
+  gunNameSlot: {fileID: 0}
   isProjectile: 0
   projectile: {fileID: 0}
   shootPoint: {fileID: 0}
@@ -422,6 +422,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 8525804992951982444}
+    - target: {fileID: 1358601260747035602, guid: a5baa1d8c2e199b45b2d73b1de267adb,
+        type: 3}
+      propertyPath: gunName
+      value: AK-47
+      objectReference: {fileID: 0}
     - target: {fileID: 1358601260747035602, guid: a5baa1d8c2e199b45b2d73b1de267adb,
         type: 3}
       propertyPath: bulletEffect

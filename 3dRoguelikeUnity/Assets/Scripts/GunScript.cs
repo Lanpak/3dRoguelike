@@ -37,7 +37,8 @@ public class GunScript : MonoBehaviour
     public GameObject ammmoCounter;
     public Sprite gunIcon;
     public GameObject gunIconSlot;
-    public float uiBulletScaleFactor;
+    public string gunName;
+    public GameObject gunNameSlot;
 
     [Header("Projectile")]
     [SerializeField] private bool isProjectile;
@@ -83,9 +84,11 @@ public class GunScript : MonoBehaviour
     {
         currentBullet = magSize;
 
-        gunIconSlot = GameObject.Find("Canvas").transform.Find("GunIcon").gameObject;
-        ammmoCounter = GameObject.Find("Canvas").transform.Find("AmmoCounter").gameObject;
+        gunIconSlot = GameObject.Find("Canvas/GameUI/GunInfo").transform.Find("GunIcon").gameObject;
+        ammmoCounter = GameObject.Find("Canvas/GameUI/GunInfo").transform.Find("AmmoCounter").gameObject;
+        gunNameSlot = GameObject.Find("Canvas/GameUI/GunInfo").transform.Find("GunName").gameObject;
 
+        gunNameSlot.GetComponent<Text>().text = gunName;
         gunIconSlot.GetComponent<Image>().preserveAspect = true;
         gunIconSlot.GetComponent<Image>().sprite = gunIcon;
         for (int i = 0; i < magSize; i++)
