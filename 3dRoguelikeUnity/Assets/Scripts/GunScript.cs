@@ -31,6 +31,14 @@ public class GunScript : MonoBehaviour
     public float snappiness;
     public float returnSpeed;
 
+
+    [Header("UI")]
+    public Image bulletIcon;
+    public GameObject ammmoCounter;
+    public Sprite gunIcon;
+    public GameObject gunIconSlot;
+    public float uiBulletScaleFactor;
+
     [Header("Projectile")]
     [SerializeField] private bool isProjectile;
     public GameObject projectile;
@@ -61,11 +69,46 @@ public class GunScript : MonoBehaviour
     private Vector3 initialPosition;
     private AnimatorStateInfo info;
     private bool isReloading = false;
+    private int currentBullet;
+
 
     void Start()
     {
         initialPosition = transform.localPosition;
         bulletsInMag = magSize;
+        SetupUI();
+    }
+
+    private void SetupUI()
+    {
+        currentBullet = magSize;
+
+        gunIconSlot = GameObject.Find("Canvas").transform.Find("GunIcon").gameObject;
+        ammmoCounter = GameObject.Find("Canvas").transform.Find("AmmoCounter").gameObject;
+
+        gunIconSlot.GetComponent<Image>().preserveAspect = true;
+        gunIconSlot.GetComponent<Image>().sprite = gunIcon;
+        for (int i = 0; i < magSize; i++)
+        {
+            Instantiate(bulletIcon, ammmoCounter.transform);
+        }
+    }
+
+    private void FireUI()
+    {
+        ammmoCounter.transform.GetChild(currentBullet-1).GetComponent<Image>().enabled = false;
+        currentBullet--;
+    } 
+    
+    private void ReloadUI()
+    {
+        foreach (Transform child in ammmoCounter.transform)
+        {
+            child.gameObject.GetComponent<Image>().enabled = true;
+        }
+
+
+        currentBullet = magSize;
     }
 
     // Update is called once per frame
@@ -147,6 +190,7 @@ public class GunScript : MonoBehaviour
             }
             else
             {
+                FireUI();
                 muzzleFlash.Play();
                 bulletsInMag--;
                 recoilScript.RecoilFire();
@@ -186,6 +230,8 @@ public class GunScript : MonoBehaviour
         {
             return;
         }
+
+        Invoke("ReloadUI", reloadSpeed);
         anim.Play(name + "_reload");
         bulletsInMag = magSize;
     }

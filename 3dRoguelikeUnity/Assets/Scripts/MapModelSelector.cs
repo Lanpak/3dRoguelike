@@ -15,6 +15,7 @@ public class MapModelSelector : MonoBehaviour
 	public MeshCollider collider;
 	public RoomLogic roomLogic;
 	MeshFilter model;
+	public int numberOfEnemies;
 
 	public GameObject[] roomLayouts = new GameObject[1];
 
@@ -29,7 +30,7 @@ public class MapModelSelector : MonoBehaviour
 		Pickmesh();
 		//PickColor();
 		SetupRoomLogic();
-		MakeInterior(4);
+		MakeInterior(numberOfEnemies);
 		
 	}
 	void Pickmesh()

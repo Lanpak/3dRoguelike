@@ -115,6 +115,7 @@ MonoBehaviour:
   - {fileID: 919132148830611531}
   room: {fileID: 7857094323002155946}
   enemies: {fileID: 1066759496976777771}
+  howManyLive: 0
 --- !u!65 &1143462316
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -411,6 +412,7 @@ MonoBehaviour:
   bossColor: {r: 0.119259514, g: 0.14508945, b: 0.3773585, a: 1}
   collider: {fileID: -2576228737586698895}
   roomLogic: {fileID: 1276525273}
+  numberOfEnemies: 1
   roomLayouts:
   - {fileID: 3438627729617019929, guid: f3fb2a22f34493f47a163b50e7cb1f9f, type: 3}
 --- !u!64 &-2576228737586698895

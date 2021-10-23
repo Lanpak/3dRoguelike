@@ -49,6 +49,8 @@ public class Enemy : MonoBehaviour
         roomLogic = transform.parent.parent.GetChild(1).gameObject.GetComponent<RoomLogic>();
         player = GameObject.Find("Player(Clone)").transform;
         agent = GetComponent<NavMeshAgent>();
+
+        transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
     }
 
     private void Update()

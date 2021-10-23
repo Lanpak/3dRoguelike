@@ -2254,7 +2254,7 @@ MonoBehaviour:
   name: ar1
   damage: 25
   firingSpeed: 5
-  reloadSpeed: 0
+  reloadSpeed: 1.667
   fullAuto: 1
   magSize: 30
   isShotgun: 0
@@ -2270,12 +2270,18 @@ MonoBehaviour:
   recoilZ: 0.35
   snappiness: 6
   returnSpeed: 2
+  bulletIcon: {fileID: 7318944919578622091, guid: 02d90556ba65af64cb6f9569828cb107,
+    type: 3}
+  ammmoCounter: {fileID: 0}
+  gunIcon: {fileID: 21300044, guid: 6674e8c43c63e4f4184cbd009379498d, type: 3}
+  gunIconSlot: {fileID: 0}
+  uiBulletScaleFactor: 2
   isProjectile: 1
   projectile: {fileID: 4921403861754054452, guid: 51bd4bd79112a034d9533daeac5d88ed,
     type: 3}
   shootPoint: {fileID: 1357272241153740924}
   projectileSize: 0.1
-  shootForce: 10
+  shootForce: 15
   arcForce: 0
   muzzleFlash: {fileID: 1160518789965226290}
   player: {fileID: 0}

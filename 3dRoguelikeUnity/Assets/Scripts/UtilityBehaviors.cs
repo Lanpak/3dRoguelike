@@ -10,4 +10,9 @@ public class UtilityBehaviors : MonoBehaviour {
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 	}
+
+	void Start()
+    {
+		Cursor.lockState = CursorLockMode.Locked;
+    }
 }
