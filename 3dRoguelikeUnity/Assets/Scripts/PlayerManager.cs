@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour
         
         //primaryScript = primary.GetComponent<GunScript>();
         //secondaryScript = secondary.GetComponent<GunScript>();
-        miniMapContainer = GameObject.Find("Canvas").transform.Find("Minimap").gameObject;
+        miniMapContainer = GameObject.Find("Canvas").transform.Find("GameUI").transform.Find("Minimap").gameObject;
         miniMapPosition = miniMapContainer.transform.Find("PlayerIcon").gameObject;
         MoveIntoRoom(0,0);
     }

@@ -6,7 +6,7 @@ using System.Text;
 public class Projectile : MonoBehaviour
 {
     public int damage;
-    private bool collided = false;
+    public bool collided = false;
     public float lifetime = 7f;
     public string enemyName;
 
@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log("should be doing damage");
             collided = true;
-            coll.transform.GetComponent<EnemySegment>().RelayDamage(damage);
+            //coll.transform.GetComponent<EnemySegment>().RelayDamage(damage);
         }
         else if(coll.transform.root.CompareTag("Player"))
         {
