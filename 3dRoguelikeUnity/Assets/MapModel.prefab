@@ -115,6 +115,8 @@ MonoBehaviour:
   - {fileID: 919132148830611531}
   room: {fileID: 7857094323002155946}
   enemies: {fileID: 1066759496976777771}
+  player: {fileID: 0}
+  position: {x: 0, y: 0}
   howManyLive: 0
 --- !u!65 &1143462316
 BoxCollider:
@@ -342,7 +344,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 32c6b63c91ea8a04bb3bd88a711ae3b5, type: 3}
+  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -413,6 +415,7 @@ MonoBehaviour:
   collider: {fileID: -2576228737586698895}
   roomLogic: {fileID: 1276525273}
   numberOfEnemies: 1
+  pos: {x: 0, y: 0}
   roomLayouts:
   - {fileID: 3438627729617019929, guid: f3fb2a22f34493f47a163b50e7cb1f9f, type: 3}
 --- !u!64 &-2576228737586698895

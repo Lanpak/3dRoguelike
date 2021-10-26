@@ -1380,7 +1380,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0111b6e2b6a8f564da74b37e61a50f5c, type: 2}
+  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1635,7 +1635,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0111b6e2b6a8f564da74b37e61a50f5c, type: 2}
+  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2275,7 +2275,8 @@ MonoBehaviour:
   ammmoCounter: {fileID: 0}
   gunIcon: {fileID: 21300044, guid: 6674e8c43c63e4f4184cbd009379498d, type: 3}
   gunIconSlot: {fileID: 0}
-  uiBulletScaleFactor: 2
+  gunName: 
+  gunNameSlot: {fileID: 0}
   isProjectile: 1
   projectile: {fileID: 4921403861754054452, guid: 51bd4bd79112a034d9533daeac5d88ed,
     type: 3}
