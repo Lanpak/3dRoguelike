@@ -213,7 +213,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-
+        Debug.Log(health);
         if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
     }
     private void DestroyEnemy()

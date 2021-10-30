@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class GunScript : MonoBehaviour
 {
@@ -53,6 +54,10 @@ public class GunScript : MonoBehaviour
 
     [SerializeField] private ParticleSystem muzzleFlash;
 
+    [Header("Sounds")]
+    public AudioClip[] fireSFX;
+    public AudioClip[] otherSFX;
+    public AudioSource soundSource;
 
 
     [Header("References")]
@@ -150,7 +155,11 @@ public class GunScript : MonoBehaviour
         isReloading = info.IsName(name + "_reload");
     }
 
-
+    public void FireAudio()
+    {
+        soundSource.clip = fireSFX[Random.Range(0, fireSFX.Length)];
+        soundSource.Play();
+    }
 
     private void Fire()
     {
@@ -166,6 +175,7 @@ public class GunScript : MonoBehaviour
         {
             if (isShotgun)
             {
+                FireAudio();
                 muzzleFlash.Play();
                 bulletsInMag--;
                 recoilScript.RecoilFire();
@@ -193,8 +203,9 @@ public class GunScript : MonoBehaviour
             }
             else
             {
+                FireAudio();
                 FireUI();
-                muzzleFlash.Play();
+                //muzzleFlash.Play();
                 bulletsInMag--;
                 recoilScript.RecoilFire();
                 anim.Play(name + "_fire");

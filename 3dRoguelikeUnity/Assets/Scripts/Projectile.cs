@@ -27,14 +27,14 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision coll)
     {
-
-
-
-        if (coll.transform.CompareTag("Shootable") && !collided)
+        if (coll.transform.CompareTag("Shootable"))
         {
-            Debug.Log("should be doing damage");
-            collided = true;
-            //coll.transform.GetComponent<EnemySegment>().RelayDamage(damage);
+            if (!collided)
+            {
+                Debug.Log("should be doing damage");
+                collided = true;
+                //coll.transform.GetComponent<EnemySegment>().RelayDamage(damage);
+            }
         }
         else if(coll.transform.root.CompareTag("Player"))
         {

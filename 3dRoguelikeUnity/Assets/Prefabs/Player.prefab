@@ -399,6 +399,9 @@ MonoBehaviour:
   shootForce: 0
   arcForce: 0
   muzzleFlash: {fileID: 8399771232223753203}
+  fireSFX: []
+  otherSFX: []
+  soundSource: {fileID: 0}
   player: {fileID: 8525804992951982444}
   camera: {fileID: 8525804992944209504}
   crosshairs: {fileID: 0}
@@ -424,28 +427,33 @@ PrefabInstance:
       objectReference: {fileID: 8525804992951982444}
     - target: {fileID: 1358601260747035602, guid: a5baa1d8c2e199b45b2d73b1de267adb,
         type: 3}
-      propertyPath: gunName
-      value: AK-47
-      objectReference: {fileID: 0}
-    - target: {fileID: 1358601260747035602, guid: a5baa1d8c2e199b45b2d73b1de267adb,
-        type: 3}
-      propertyPath: bulletEffect
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1358601260747035602, guid: a5baa1d8c2e199b45b2d73b1de267adb,
-        type: 3}
       propertyPath: recoilScript
       value: 
       objectReference: {fileID: 8525804993272260236}
+    - target: {fileID: 1358601260747035602, guid: a5baa1d8c2e199b45b2d73b1de267adb,
+        type: 3}
+      propertyPath: fireSFX.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358601260747035602, guid: a5baa1d8c2e199b45b2d73b1de267adb,
+        type: 3}
+      propertyPath: fireSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358601260747035602, guid: a5baa1d8c2e199b45b2d73b1de267adb,
+        type: 3}
+      propertyPath: fireSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358601260747035602, guid: a5baa1d8c2e199b45b2d73b1de267adb,
+        type: 3}
+      propertyPath: fireSFX.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8443064174687268592, guid: a5baa1d8c2e199b45b2d73b1de267adb,
         type: 3}
       propertyPath: m_Name
       value: ar1(automatic rifle)_prefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 8443064174687268592, guid: a5baa1d8c2e199b45b2d73b1de267adb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9106307646662636618, guid: a5baa1d8c2e199b45b2d73b1de267adb,
         type: 3}
