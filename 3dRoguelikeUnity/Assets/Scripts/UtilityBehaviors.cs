@@ -18,5 +18,5 @@ public class UtilityBehaviors : MonoBehaviour {
 	void Start()
     {
 		Cursor.lockState = CursorLockMode.Locked;
-    }
+	}
 }

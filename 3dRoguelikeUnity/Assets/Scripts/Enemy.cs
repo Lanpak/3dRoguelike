@@ -1,6 +1,6 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float spreadX;
     [SerializeField] private float spreadY;
     [SerializeField] private float spreadZ;
+
+    public AudioSource source;
+    public AudioClip hitClip;
 
     private RoomLogic roomLogic;
     public Animator anim;
@@ -44,8 +47,14 @@ public class Enemy : MonoBehaviour
 
     public Transform shootPoint;
 
+    private int startHealth;
+    public SkinnedMeshRenderer renderer;
+
+    public Material[] mats;
+
     private void Awake()
     {
+        startHealth = (int)health;
         roomLogic = transform.parent.parent.GetChild(1).gameObject.GetComponent<RoomLogic>();
         player = GameObject.Find("Player(Clone)").transform;
         agent = GetComponent<NavMeshAgent>();
@@ -121,6 +130,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
+    private void HandleHitSFX()
+    {
+        source.clip = hitClip;
+        source.Play();
+    }
+
     private bool HandleLineOfSight()
     {
         bool isLos = false;
@@ -186,6 +202,21 @@ public class Enemy : MonoBehaviour
         return direction.normalized;
     }
 
+    private void HandleMatHit()
+    {
+        renderer.material = mats[mats.Length-(((int)health / (startHealth / mats.Length)) - 1)];
+
+
+
+
+
+
+
+        //mat.SetColor("_EmissionColor", newCol);
+        //mat.color = newCol;
+    }
+
+
     private void AttackPlayer()
     {
         //Make sure enemy doesn't move
@@ -196,7 +227,8 @@ public class Enemy : MonoBehaviour
         if (!alreadyAttacked)
         {
             ///Attack code here
-            Rigidbody rb = Instantiate(projectile, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+            GameObject shot = Instantiate(projectile, shootPoint.position, Quaternion.identity);
+            Rigidbody rb = shot.GetComponent<Rigidbody>();
             rb.AddForce(HandleSpread() * shootForce, ForceMode.Impulse);
             //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
             ///End of attack code
@@ -212,9 +244,16 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        HandleMatHit();
+        HandleHitSFX();
         health -= damage;
         Debug.Log(health);
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        if(health <= 0)
+        {
+            DestroyEnemy();
+        }
+
+        //if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
     }
     private void DestroyEnemy()
     {

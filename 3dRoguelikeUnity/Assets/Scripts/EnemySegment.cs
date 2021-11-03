@@ -8,13 +8,11 @@ public class EnemySegment : MonoBehaviour
 
     public void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.CompareTag("Projectile") && !coll.gameObject.GetComponent<Projectile>().collided)
+        if (coll.gameObject.CompareTag("Projectile"))//&&!coll.gameObject.GetComponent<Projectile>().collided
         {
             int damage = coll.gameObject.GetComponent<Projectile>().damage;
-            
-
+            Destroy(coll.gameObject);
             master.GetComponent<Enemy>().TakeDamage(damage);
         }
-        
     }
 }

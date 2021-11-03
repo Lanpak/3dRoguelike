@@ -2266,7 +2266,7 @@ MonoBehaviour:
   amount: 0.02
   maxAmount: 0.06
   smoothAmount: 6
-  recoilX: -2
+  recoilX: -6
   recoilY: 2
   recoilZ: 0.35
   snappiness: 6
@@ -2310,7 +2310,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.168
+  m_Volume: 0.051
   m_Pitch: 0.98
   Loop: 0
   Mute: 0

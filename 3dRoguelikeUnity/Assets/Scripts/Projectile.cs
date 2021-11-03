@@ -10,6 +10,9 @@ public class Projectile : MonoBehaviour
     public float lifetime = 7f;
     public string enemyName;
 
+
+    public bool friendly;
+
     void Start()
     {
         Invoke("DespawnObj", lifetime);
@@ -33,6 +36,8 @@ public class Projectile : MonoBehaviour
             {
                 Debug.Log("should be doing damage");
                 collided = true;
+
+                
                 //coll.transform.GetComponent<EnemySegment>().RelayDamage(damage);
             }
         }
