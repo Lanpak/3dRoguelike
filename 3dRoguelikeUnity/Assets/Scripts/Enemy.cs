@@ -204,8 +204,13 @@ public class Enemy : MonoBehaviour
 
     private void HandleMatHit()
     {
-        renderer.material = mats[mats.Length-(((int)health / (startHealth / mats.Length)) - 1)];
-
+        for (int i = 0; i < mats.Length; i++)
+        {
+            if (health <=startHealth - (i * (startHealth / mats.Length)))
+            {
+                renderer.material = mats[i];
+            }
+        }
 
 
 
@@ -244,14 +249,18 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        HandleMatHit();
-        HandleHitSFX();
-        health -= damage;
-        Debug.Log(health);
-        if(health <= 0)
+        if (roomLogic.triggered)
         {
-            DestroyEnemy();
+            HandleHitSFX();
+            health -= damage;
+            Debug.Log(health);
+            HandleMatHit();
+            if (health <= 0)
+            {
+                DestroyEnemy();
+            }
         }
+        
 
         //if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
     }
@@ -264,6 +273,7 @@ public class Enemy : MonoBehaviour
             
             agent.SetDestination(transform.position);
             Instantiate(deathEffect, transform.position, Quaternion.identity);
+            
             roomLogic.EnemyDied();
             Destroy(gameObject);
         }

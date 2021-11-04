@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomLogic : MonoBehaviour
 {
-    private bool triggered = false;
+    public bool triggered = false;
     public GameObject[] doors = new GameObject[4];
     public GameObject room;
     public GameObject enemies;
