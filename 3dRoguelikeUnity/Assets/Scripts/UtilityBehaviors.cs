@@ -8,9 +8,9 @@ public class UtilityBehaviors : MonoBehaviour {
 	
 	
 	void Update () {//reload scene, for testing purposes
-		//if (Input.GetKeyDown("r")){
-		//	SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-		//}
+		if (Input.GetKeyDown("r")){
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
 	}
 
 

@@ -18,8 +18,9 @@ public class LevelGeneration : MonoBehaviour {
 	private int gridSizeX, gridSizeY;
 	public int numberOfRooms;
 	public GameObject roomWhiteObj;
-	void Start () {
-		if (numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2)){ // make sure we dont try to make more rooms than can fit in our grid
+	public void MakeMap () {
+		if (numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2))
+		{ // make sure we dont try to make more rooms than can fit in our grid
 			numberOfRooms = Mathf.RoundToInt((worldSize.x * 2) * (worldSize.y * 2));
 		}
 		gridSizeX = Mathf.RoundToInt(worldSize.x); //note: these are half-extents
@@ -29,9 +30,9 @@ public class LevelGeneration : MonoBehaviour {
 		DrawMap(); //instantiates objects to make up a map
 		DrawMiniMap();
 
-		Invoke("BakeMesh",0.5f);
-		
-		
+		Invoke("BakeMesh", 0.5f);
+
+
 
 		Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
 
