@@ -35,6 +35,7 @@ public class GunScript : MonoBehaviour
 
     [Header("UI")]
     public Image bulletIcon;
+    public Image ininiteIcon;
     public GameObject ammmoCounter;
     public Sprite gunIcon;
     public GameObject gunIconSlot;
@@ -45,6 +46,8 @@ public class GunScript : MonoBehaviour
     [SerializeField] private bool isProjectile;
     public GameObject projectile;
     public Transform shootPoint;
+    public Transform shootPointA;
+    public Transform shootPointB;
     public float projectileSize;
     [SerializeField] private float shootForce;
     [SerializeField] private float arcForce;
@@ -60,16 +63,48 @@ public class GunScript : MonoBehaviour
     public AudioSource soundSource;
 
 
+    [Header("Upgrades")]
+    public int upgradeDamageAmount;
+    public int upgradeScaleUpDamageAmount;
+    public float upgradeScaleUpSize;
+    public float upgradeScaleUpForce;
+    
+    public int upgradeScaleDownDamageAmount;
+    public float upgradeScaleDownSize;
+    public float upgradeScaleDownForce;
+
+
     [Header("References")]
     [SerializeField] private GameObject player;
     [SerializeField] private Camera camera;
     [SerializeField] private Image crosshairs;
     [SerializeField] private Recoil recoilScript;
     [SerializeField] private Animator anim;
+    private LevelManager manager;
 
 
     [HideInInspector] public int bulletsInMag;
-    
+
+    public bool usingSplitter;
+    public bool usingDamage;
+    [HideInInspector] public bool usingAmmo;
+    [HideInInspector] public bool usingScaleUp;
+    [HideInInspector] public bool usingScaleDown;
+    //UpgradeCode chart
+
+    // 0: splitter
+    // 1: damage+
+    // 2: explosive
+    // 3: recoil-
+    // 4: ammo+
+    // 5: scale+
+    // 6: scale-
+    // 7: speed+
+    // 8: armour
+    // 9: hp+
+
+
+
 
     private float nextTimeToFire = 0;
     private Vector3 initialPosition;
@@ -80,9 +115,47 @@ public class GunScript : MonoBehaviour
 
     void Start()
     {
+        manager = GameObject.Find("Manager").GetComponent<LevelManager>();
+
+        for (int i = 0; i < manager.playerUpgrades.Count; i++)
+        {
+            if (manager.playerUpgrades[i] == 0){ usingSplitter = true; }
+            if (manager.playerUpgrades[i] == 1){ usingDamage = true; }
+            if (manager.playerUpgrades[i] == 4){ usingAmmo = true; }
+            if (manager.playerUpgrades[i] == 5){ usingScaleUp = true; }
+            if (manager.playerUpgrades[i] == 6){ usingScaleDown = true; }
+        }
+
+
+
+
         initialPosition = transform.localPosition;
         bulletsInMag = magSize;
         SetupUI();
+
+        if (usingDamage)
+        {
+            damage += upgradeDamageAmount;
+        }
+        if (usingScaleUp)
+        {
+            damage += upgradeScaleUpDamageAmount;
+            projectileSize = upgradeScaleUpSize;
+            shootForce = upgradeScaleUpForce;
+        }
+        if (usingScaleDown)
+        {
+            damage += upgradeScaleDownDamageAmount;
+            projectileSize = upgradeScaleDownSize;
+            shootForce = upgradeScaleDownForce;
+        }
+        if(usingScaleDown && usingScaleUp)
+        {
+            damage += upgradeScaleUpDamageAmount;
+            projectileSize = upgradeScaleUpSize;
+            shootForce = upgradeScaleDownForce;
+        }
+
     }
 
     private void SetupUI()
@@ -96,10 +169,20 @@ public class GunScript : MonoBehaviour
         gunNameSlot.GetComponent<Text>().text = gunName;
         gunIconSlot.GetComponent<Image>().preserveAspect = true;
         gunIconSlot.GetComponent<Image>().sprite = gunIcon;
-        for (int i = 0; i < magSize; i++)
+
+        if (usingAmmo)
         {
-            Instantiate(bulletIcon, ammmoCounter.transform);
+            Instantiate(ininiteIcon, ammmoCounter.transform);
         }
+        else
+        {
+            for (int i = 0; i < magSize; i++)
+            {
+                Instantiate(bulletIcon, ammmoCounter.transform);
+            }
+        }
+
+        
     }
 
     private void FireUI()
@@ -177,10 +260,24 @@ public class GunScript : MonoBehaviour
             {
                 FireAudio();
                 muzzleFlash.Play();
-                bulletsInMag--;
+
+                if (!usingAmmo)
+                {
+                    bulletsInMag--;
+                }
+                
                 recoilScript.RecoilFire();
                 anim.Play(name + "_fire");
-                for (int i = 0; i < bulletsPerShot; i++)
+
+                int buls = bulletsPerShot;
+
+                if (usingSplitter)
+                {
+                    buls = buls * 2;
+                }
+
+
+                for (int i = 0; i < buls; i++)
                 {
 
                     if (!isProjectile)
@@ -204,9 +301,13 @@ public class GunScript : MonoBehaviour
             else
             {
                 FireAudio();
-                FireUI();
+                
                 //muzzleFlash.Play();
-                bulletsInMag--;
+                if (!usingAmmo)
+                {
+                    FireUI();
+                    bulletsInMag--;
+                }
                 recoilScript.RecoilFire();
                 anim.Play(name + "_fire");
                 if (!isProjectile)
@@ -222,7 +323,23 @@ public class GunScript : MonoBehaviour
                 }
                 else
                 {
-                    GameObject proj = Instantiate(projectile, shootPoint.position, Quaternion.identity);
+
+                    Transform point = shootPoint;
+
+                    if (usingSplitter)
+                    {
+                        point = shootPointB;
+
+                        GameObject projA = Instantiate(projectile, shootPointA.position, Quaternion.identity);
+                        projA.transform.localScale = new Vector3(projectileSize, projectileSize, projectileSize);
+                        projA.GetComponent<Projectile>().damage = damage;
+                        Rigidbody rbA = projA.GetComponent<Rigidbody>();
+                        rbA.AddForce(transform.up * arcForce, ForceMode.Impulse);
+                        rbA.AddTorque(new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), ForceMode.Impulse);
+                        rbA.AddForce(transform.forward * shootForce, ForceMode.Impulse);
+                    }
+
+                    GameObject proj = Instantiate(projectile, point.position, Quaternion.identity);
                     proj.transform.localScale = new Vector3(projectileSize, projectileSize, projectileSize);
                     proj.GetComponent<Projectile>().damage = damage;
                     Rigidbody rb = proj.GetComponent<Rigidbody>();

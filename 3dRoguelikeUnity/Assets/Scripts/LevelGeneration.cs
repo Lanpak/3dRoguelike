@@ -11,6 +11,8 @@ public class LevelGeneration : MonoBehaviour {
 	public GameObject ground;
 	public GameObject enemy;
 	public Transform miniMapParent;
+	public bool isBoss = false;
+	public bool isReward = false;
 
 	public Vector2 worldSize = new Vector2(8,8);
 	Room[,] rooms;
@@ -146,7 +148,7 @@ public class LevelGeneration : MonoBehaviour {
 	}
 	void DrawMiniMap(){
 
-		Debug.Log(FindBossRoom());
+		//Debug.Log(FindBossRoom());
 		foreach (Room room in rooms){
 			if (room == null){
 				continue; //skip where there is no room
@@ -173,7 +175,7 @@ public class LevelGeneration : MonoBehaviour {
 	}
 	void DrawMap(){
 
-		Debug.Log(FindBossRoom());
+		////Debug.Log(FindBossRoom());
 		foreach (Room room in rooms){
 			if (room == null){
 				continue; //skip where there is no room
@@ -269,15 +271,15 @@ public class LevelGeneration : MonoBehaviour {
 
 		while (lar.Count < totalRooms)
         {
-			Debug.Log(dist);
+			////Debug.Log(dist);
 			//get rooms furthest away from starting room in list
 			foreach (KeyValuePair<Vector2, int> currentRoom in lar)
 			{
 				nextRoom = currentRoom.Key;
-				Debug.Log(nextRoom);
+				////Debug.Log(nextRoom);
 				if (currentRoom.Value == dist)
 				{
-					Debug.Log(nextRoom + " in foreach");
+					////Debug.Log(nextRoom + " in foreach");
 
 					if (rooms[(int)nextRoom.x + 1, (int)nextRoom.y] != null)
 					{
@@ -303,7 +305,7 @@ public class LevelGeneration : MonoBehaviour {
                 if (!lar.ContainsKey(currentRoom))
                 {
 					lar.Add(currentRoom, dist);
-					Debug.Log(currentRoom + " " + dist);
+					////Debug.Log(currentRoom + " " + dist);
 				}
 			}
 			lookedAtRooms.Clear();

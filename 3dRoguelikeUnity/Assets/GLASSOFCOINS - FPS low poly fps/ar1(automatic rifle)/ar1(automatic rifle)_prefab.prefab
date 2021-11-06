@@ -96,6 +96,36 @@ Transform:
   m_Father: {fileID: 8385736361033546824}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &658620693447372239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5498531864093580461}
+  m_Layer: 0
+  m_Name: ShootPointB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5498531864093580461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658620693447372239}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.132, y: 0.168, z: 2.298}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9106307646662636618}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &793701672918014559
 GameObject:
   m_ObjectHideFlags: 0
@@ -2218,6 +2248,9 @@ Transform:
   - {fileID: 7697100815770571821}
   - {fileID: 7616462867772687432}
   - {fileID: 1357272241153740924}
+  - {fileID: 9205747164451705962}
+  - {fileID: 6052471081854506967}
+  - {fileID: 5498531864093580461}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 1.91, z: 0}
@@ -2273,6 +2306,8 @@ MonoBehaviour:
   returnSpeed: 2
   bulletIcon: {fileID: 7318944919578622091, guid: 02d90556ba65af64cb6f9569828cb107,
     type: 3}
+  ininiteIcon: {fileID: 7318944919578622091, guid: 280eccb662f94144d9709f97becca8ad,
+    type: 3}
   ammmoCounter: {fileID: 0}
   gunIcon: {fileID: 21300044, guid: 6674e8c43c63e4f4184cbd009379498d, type: 3}
   gunIconSlot: {fileID: 0}
@@ -2281,7 +2316,9 @@ MonoBehaviour:
   isProjectile: 1
   projectile: {fileID: 4921403861754054452, guid: 51bd4bd79112a034d9533daeac5d88ed,
     type: 3}
-  shootPoint: {fileID: 1357272241153740924}
+  shootPoint: {fileID: 9205747164451705962}
+  shootPointA: {fileID: 6052471081854506967}
+  shootPointB: {fileID: 5498531864093580461}
   projectileSize: 0.1
   shootForce: 15
   arcForce: 0
@@ -2292,12 +2329,24 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 526c9ceab0a7e754ab261c69d2f9b6d4, type: 3}
   otherSFX: []
   soundSource: {fileID: 5897995017720203236}
+  upgradeDamageAmount: 20
+  upgradeScaleUpDamageAmount: 5
+  upgradeScaleUpSize: 0.5
+  upgradeScaleUpForce: 7
+  upgradeScaleDownDamageAmount: 5
+  upgradeScaleDownSize: 0.05
+  upgradeScaleDownForce: 25
   player: {fileID: 0}
   camera: {fileID: 0}
   crosshairs: {fileID: 0}
   recoilScript: {fileID: 0}
   anim: {fileID: 1358601260747035601}
   bulletsInMag: 0
+  usingSplitter: 0
+  usingDamage: 0
+  usingAmmo: 0
+  usingScaleUp: 0
+  usingScaleDown: 0
 --- !u!82 &5897995017720203236
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2394,6 +2443,66 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8448404675583242152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6052471081854506967}
+  m_Layer: 0
+  m_Name: ShootPointA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6052471081854506967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8448404675583242152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.606, y: 0.168, z: 2.314}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9106307646662636618}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8662105728803511556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9205747164451705962}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9205747164451705962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8662105728803511556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.368, y: 0.168, z: 2.306}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9106307646662636618}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9015181866210441300
 GameObject:
   m_ObjectHideFlags: 0

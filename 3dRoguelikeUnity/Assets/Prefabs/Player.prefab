@@ -395,6 +395,8 @@ MonoBehaviour:
   isProjectile: 0
   projectile: {fileID: 0}
   shootPoint: {fileID: 0}
+  shootPointA: {fileID: 0}
+  shootPointB: {fileID: 0}
   projectileSize: 0
   shootForce: 0
   arcForce: 0
@@ -408,6 +410,11 @@ MonoBehaviour:
   recoilScript: {fileID: 8525804993272260236}
   anim: {fileID: 8525804993704404100}
   bulletsInMag: 0
+  usingSplitter: 0
+  usingDamage: 0
+  usingAmmo: 0
+  usingScaleUp: 0
+  usingScaleDown: 0
 --- !u!1001 &7244891976156848879
 PrefabInstance:
   m_ObjectHideFlags: 0

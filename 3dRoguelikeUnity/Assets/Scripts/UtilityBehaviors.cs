@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UtilityBehaviors : MonoBehaviour {
+public class UtilityBehaviors : MonoBehaviour
+{
 
-	
-	
-	void Update () {//reload scene, for testing purposes
-		if (Input.GetKeyDown("r")){
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+
+	void Update()
+	{//reload scene, for testing purposes
+		if (Input.GetKeyDown("r"))
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		}
+
 	}
 
+	
 
-
-	void Start()
-    {
-		Cursor.lockState = CursorLockMode.Locked;
-	}
 }

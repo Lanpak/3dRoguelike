@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game.unity
     guid: 7e58fb8c6ff0f654ea6671c3cefc7946
+  - enabled: 1
+    path: Assets/UpgradePick.unity
+    guid: 4cee77d40a48872418eced7c2810d820
   m_configObjects: {}

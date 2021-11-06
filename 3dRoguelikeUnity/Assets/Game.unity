@@ -494,14 +494,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 21959020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17cb37476d78db84c90a7a2cb7d9f832, type: 3}
+  m_Script: {fileID: 11500000, guid: 4700a633cfeee5e4f8a4f6711755c06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startRooms: 5
   levelsPerFloor: 3
   floorsPerGame: 3
-  rewardsPerFloor: 3
+  roomsPerFloor: 1
   enemyScaling: 1
   generator: {fileID: 0}
+  floor: 1
+  level: 0
+  upgradeChoices: 3
+  playerUpgrades: 
+  upgradePrefab:
+  - {fileID: 6265577577233300104, guid: 7005420e4f1998c448bade011c2bfce5, type: 3}
+  - {fileID: 6265577577233300104, guid: 4c7bd94b781bc73448b809526e28bb87, type: 3}
+  - {fileID: 6265577577233300104, guid: d5c27ff67ebf25b47a6a4690c204f626, type: 3}
+  - {fileID: 6265577577233300104, guid: fa4d71e41a3800f4695afa352a073eb1, type: 3}
+  - {fileID: 6265577577233300104, guid: 53543e5b801f2f64caf6f7ff266e4190, type: 3}
+  - {fileID: 6265577577233300104, guid: 42653536751387f4ba4db557523e590b, type: 3}
+  - {fileID: 6265577577233300104, guid: ef1862bd1a99ff742b23893f9966e798, type: 3}
+  - {fileID: 6265577577233300104, guid: d7ddc9964175af041b064025a0672eb5, type: 3}
+  - {fileID: 6265577577233300104, guid: e49b6f9b181ee504fbf078de7d78e399, type: 3}
+  - {fileID: 6265577577233300104, guid: 397147003c91f6b4a89809a4d7075a65, type: 3}
+  allUpgrades: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  options: {fileID: 0}
 --- !u!850595691 &124133280
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -714,7 +732,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -773,6 +791,8 @@ MonoBehaviour:
   ground: {fileID: 927954034}
   enemy: {fileID: 2862006427199363929, guid: 9e2fb32fada5d8a449e2f41507c183e9, type: 3}
   miniMapParent: {fileID: 1641395491}
+  isBoss: 0
+  isReward: 0
   worldSize: {x: 10, y: 10}
   numberOfRooms: 7
   roomWhiteObj: {fileID: 6616603188203329973, guid: 5a84cf99a31055c4e966f82870de93f4,
