@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private float moveSpeed;
     [SerializeField] private float walkSpeed;
-    [SerializeField] private float runSpeed;
+    [SerializeField] private float upgradedWalkSpeed;
     [SerializeField] private float jumpForce;
 
     private Vector3 moveDirection = Vector3.zero;
@@ -18,19 +18,41 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravity;
     [SerializeField] private bool isPlayerGrounded = false;
     private Vector3 playerVelocity = Vector3.zero;
+    private LevelManager manager;
+
+    private bool usingSpeedUpgrade;
 
     private void Start()
     {
         GetReferences();
 
-        moveSpeed = walkSpeed;
+
+        
+        for (int i = 0; i < manager.playerUpgrades.Count; i++)
+        {
+            if(manager.playerUpgrades[i] == 7)
+            {
+                usingSpeedUpgrade = true;
+            }
+            
+        }
+        if (usingSpeedUpgrade)
+        {
+            Debug.Log("fast");
+            moveSpeed = upgradedWalkSpeed;
+        }
+        else
+        {
+            Debug.Log("normal");
+            moveSpeed = walkSpeed;
+        }
+
     }
 
     private void Update()
     {
 
         HandleGravity();
-        HandleRunning();
         HandleMovement();
     }
 
@@ -72,18 +94,9 @@ public class PlayerController : MonoBehaviour
     private void GetReferences()
     {
         controller = GetComponent<CharacterController>();
+        manager = GameObject.Find("Manager").GetComponent<LevelManager>();
     }
 
-    private void HandleRunning()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            moveSpeed = runSpeed;
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            moveSpeed = walkSpeed;
-        }
-    }
+    
 
 }

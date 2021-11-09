@@ -180,9 +180,10 @@ GameObject:
   - component: {fileID: 8525804992951982445}
   - component: {fileID: 8525804992951982441}
   - component: {fileID: 8525804992951982442}
+  - component: {fileID: 6272870280708950516}
   m_Layer: 11
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -263,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 5
-  runSpeed: 7
+  upgradedWalkSpeed: 10
   jumpForce: 1
   groundDistance: 0.2
   groundMask:
@@ -286,11 +287,115 @@ MonoBehaviour:
   primary: {fileID: 0}
   secondary: {fileID: 0}
   mouseSensitivity: 500
+  maxHitpoints: 100
+  boostedHitpoints: 0
+  hitpoints: 0
   cam: {fileID: 8525804992944209504}
   playerIcon: {fileID: 7339169831900905925, guid: a3b7d5fc08ca8344c8f31fc8d500baae,
     type: 3}
   miniMapPosition: {fileID: 0}
   miniMapContainer: {fileID: 0}
+  takeDamageClip: {fileID: 8300000, guid: 05ea6928a01f3734a8eaa3ace8e11ae8, type: 3}
+  deathClip: {fileID: 0}
+  usingHp: 0
+  usingArmour: 0
+  armourEffectiveness: 0.5
+--- !u!82 &6272870280708950516
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525804992951982444}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8525804993272260274
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,6 +492,7 @@ MonoBehaviour:
   snappiness: 7
   returnSpeed: 1.5
   bulletIcon: {fileID: 0}
+  ininiteIcon: {fileID: 0}
   ammmoCounter: {fileID: 0}
   gunIcon: {fileID: 0}
   gunIconSlot: {fileID: 0}
@@ -404,6 +510,19 @@ MonoBehaviour:
   fireSFX: []
   otherSFX: []
   soundSource: {fileID: 0}
+  upgradeDamageAmount: 0
+  upgradeScaleUpDamageAmount: 0
+  upgradeScaleUpSize: 0
+  upgradeScaleUpForce: 0
+  upgradeScaleDownDamageAmount: 0
+  upgradeScaleDownSize: 0
+  upgradeScaleDownForce: 0
+  upgradeExplosiveForce: 0
+  upgradeExplosiveSize: 0
+  upgradeExplosiveShards: 0
+  recoilUpgradeX: 0
+  recoilUpgradeY: 0
+  recoilUpgradeZ: 0
   player: {fileID: 8525804992951982444}
   camera: {fileID: 8525804992944209504}
   crosshairs: {fileID: 0}
@@ -415,6 +534,8 @@ MonoBehaviour:
   usingAmmo: 0
   usingScaleUp: 0
   usingScaleDown: 0
+  usingExplosive: 0
+  usingRecoil: 0
 --- !u!1001 &7244891976156848879
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class Recoil : MonoBehaviour
 
     public GunScript gs;
 
+
     
     
     void Update()

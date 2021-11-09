@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     public GameObject deathEffect;
 
     public float health;
+    public int damage;
 
     public bool isDead = false;
     public bool isDisabled = true;
@@ -233,6 +234,7 @@ public class Enemy : MonoBehaviour
         {
             ///Attack code here
             GameObject shot = Instantiate(projectile, shootPoint.position, Quaternion.identity);
+            shot.GetComponent<Projectile>().damage = damage;
             Rigidbody rb = shot.GetComponent<Rigidbody>();
             rb.AddForce(HandleSpread() * shootForce, ForceMode.Impulse);
             //rb.AddForce(transform.up * 8f, ForceMode.Impulse);

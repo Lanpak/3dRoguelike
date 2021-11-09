@@ -12,6 +12,8 @@ public class RoomLayout : MonoBehaviour
 
     void Awake()
     {
+
+
         Transform[] allChildren = GetComponentsInChildren<Transform>();
         foreach (Transform child in allChildren)
         {
@@ -27,6 +29,7 @@ public class RoomLayout : MonoBehaviour
             Invoke("DoSpawn", 0.8f);
         }
     }
+
 
 
     private void DoSpawn()

@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddbfb9e87c51daa44a30b42513796f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggered: 0
   doors:
   - {fileID: 919132148648721702}
   - {fileID: 919132147816575351}
@@ -418,6 +419,8 @@ MonoBehaviour:
   pos: {x: 0, y: 0}
   roomLayouts:
   - {fileID: 3438627729617019929, guid: f3fb2a22f34493f47a163b50e7cb1f9f, type: 3}
+  portalLayout: {fileID: 3438627729617019929, guid: 48d7810fd41998d489f6e2f019efad01,
+    type: 3}
 --- !u!64 &-2576228737586698895
 MeshCollider:
   m_ObjectHideFlags: 0

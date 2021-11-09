@@ -11,10 +11,32 @@ public class Projectile : MonoBehaviour
     public string enemyName;
 
 
+
+
+    public bool usingExplosive;
+    private bool isShard;
+    public int shardsOnExplosion;
+    public float shardSize;
+    public int shardForce;
+    private bool exploded = false;
+    
+
+
+    private LevelManager manager;
+
     public bool friendly;
 
     void Start()
     {
+        if (!isShard)
+        {
+            manager = GameObject.Find("Manager").GetComponent<LevelManager>();
+
+            if (manager.playerUpgrades.Contains(2)) { usingExplosive = true; }
+
+
+        }
+
         Invoke("DespawnObj", lifetime);
     }
 
@@ -25,7 +47,23 @@ public class Projectile : MonoBehaviour
 
 
     
+    private void Explode()
+    {
+        for (int i = 0; i < shardsOnExplosion; i++)
+        {
+            GameObject proj = Instantiate(gameObject, gameObject.transform.position, Quaternion.identity);
+            proj.transform.localScale = new Vector3(shardSize, shardSize, shardSize);
+            proj.GetComponent<Projectile>().damage = damage;
+            proj.GetComponent<Projectile>().isShard = true;
+            Rigidbody rb = proj.GetComponent<Rigidbody>();
+            rb.AddTorque(new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), ForceMode.Impulse);
+            Transform rot = gameObject.transform;
+            rot.rotation = Random.rotation;
+            rb.AddForce(rot.forward * shardForce, ForceMode.Impulse);
+        }
 
+        
+    }
     
 
     private void OnCollisionEnter(Collision coll)
@@ -41,10 +79,17 @@ public class Projectile : MonoBehaviour
                 //coll.transform.GetComponent<EnemySegment>().RelayDamage(damage);
             }
         }
-        else if(coll.transform.root.CompareTag("Player"))
+        else 
         {
-            //take damage
+            if (!isShard && usingExplosive && !exploded)
+            {
+                Explode();
+                Destroy(gameObject);
+            }
         }
+
+        
+    
     }
 
 }

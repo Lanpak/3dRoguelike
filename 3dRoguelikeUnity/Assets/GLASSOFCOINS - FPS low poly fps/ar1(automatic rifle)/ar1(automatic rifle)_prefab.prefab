@@ -2336,6 +2336,12 @@ MonoBehaviour:
   upgradeScaleDownDamageAmount: 5
   upgradeScaleDownSize: 0.05
   upgradeScaleDownForce: 25
+  upgradeExplosiveForce: 15
+  upgradeExplosiveSize: 0.5
+  upgradeExplosiveShards: 3
+  recoilUpgradeX: 4
+  recoilUpgradeY: 0
+  recoilUpgradeZ: 0
   player: {fileID: 0}
   camera: {fileID: 0}
   crosshairs: {fileID: 0}
@@ -2347,6 +2353,8 @@ MonoBehaviour:
   usingAmmo: 0
   usingScaleUp: 0
   usingScaleDown: 0
+  usingExplosive: 0
+  usingRecoil: 0
 --- !u!82 &5897995017720203236
 AudioSource:
   m_ObjectHideFlags: 0

@@ -63,15 +63,27 @@ public class GunScript : MonoBehaviour
     public AudioSource soundSource;
 
 
-    [Header("Upgrades")]
+    
+
+    [Header("DamageUp")]
+    [Header("------- Upgrades -------")]
     public int upgradeDamageAmount;
+    [Header("ScaleUp")]
     public int upgradeScaleUpDamageAmount;
     public float upgradeScaleUpSize;
     public float upgradeScaleUpForce;
-    
+    [Header("ScaleDown")]
     public int upgradeScaleDownDamageAmount;
     public float upgradeScaleDownSize;
     public float upgradeScaleDownForce;
+    [Header("Explosive")]
+    public int upgradeExplosiveForce;
+    public float upgradeExplosiveSize;
+    public int upgradeExplosiveShards;
+    [Header("RecoilControl")]
+    public float recoilUpgradeX;
+    public float recoilUpgradeY;
+    public float recoilUpgradeZ;
 
 
     [Header("References")]
@@ -90,6 +102,8 @@ public class GunScript : MonoBehaviour
     [HideInInspector] public bool usingAmmo;
     [HideInInspector] public bool usingScaleUp;
     [HideInInspector] public bool usingScaleDown;
+    [HideInInspector] public bool usingExplosive;
+    [HideInInspector] public bool usingRecoil;
     //UpgradeCode chart
 
     // 0: splitter
@@ -113,17 +127,20 @@ public class GunScript : MonoBehaviour
     private int currentBullet;
 
 
+
     void Start()
     {
         manager = GameObject.Find("Manager").GetComponent<LevelManager>();
 
         for (int i = 0; i < manager.playerUpgrades.Count; i++)
         {
-            if (manager.playerUpgrades[i] == 0){ usingSplitter = true; }
-            if (manager.playerUpgrades[i] == 1){ usingDamage = true; }
-            if (manager.playerUpgrades[i] == 4){ usingAmmo = true; }
-            if (manager.playerUpgrades[i] == 5){ usingScaleUp = true; }
-            if (manager.playerUpgrades[i] == 6){ usingScaleDown = true; }
+            if (manager.playerUpgrades[i] == 0) { usingSplitter = true; }
+            if (manager.playerUpgrades[i] == 1) { usingDamage = true; }
+            if (manager.playerUpgrades[i] == 2) { usingExplosive = true; }
+            if (manager.playerUpgrades[i] == 3) { usingRecoil = true; }
+            if (manager.playerUpgrades[i] == 4) { usingAmmo = true; }
+            if (manager.playerUpgrades[i] == 5) { usingScaleUp = true; }
+            if (manager.playerUpgrades[i] == 6) { usingScaleDown = true; }
         }
 
 
@@ -149,13 +166,18 @@ public class GunScript : MonoBehaviour
             projectileSize = upgradeScaleDownSize;
             shootForce = upgradeScaleDownForce;
         }
-        if(usingScaleDown && usingScaleUp)
+        if (usingScaleDown && usingScaleUp)
         {
             damage += upgradeScaleUpDamageAmount;
             projectileSize = upgradeScaleUpSize;
             shootForce = upgradeScaleDownForce;
         }
-
+        if (usingRecoil)
+        {
+            recoilX += recoilUpgradeX;
+            recoilY += recoilUpgradeY;
+            recoilZ += recoilUpgradeZ;
+        }
     }
 
     private void SetupUI()
@@ -332,7 +354,15 @@ public class GunScript : MonoBehaviour
 
                         GameObject projA = Instantiate(projectile, shootPointA.position, Quaternion.identity);
                         projA.transform.localScale = new Vector3(projectileSize, projectileSize, projectileSize);
-                        projA.GetComponent<Projectile>().damage = damage;
+                        Projectile projScriptA = projA.GetComponent<Projectile>();
+                        projScriptA.damage = damage;
+                        projScriptA.usingExplosive = usingExplosive;
+                        if (usingExplosive)
+                        {
+                            projScriptA.shardSize = upgradeExplosiveSize;
+                            projScriptA.shardsOnExplosion = upgradeExplosiveShards;
+                            projScriptA.shardForce = upgradeExplosiveForce;
+                        }
                         Rigidbody rbA = projA.GetComponent<Rigidbody>();
                         rbA.AddForce(transform.up * arcForce, ForceMode.Impulse);
                         rbA.AddTorque(new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), ForceMode.Impulse);
@@ -341,7 +371,15 @@ public class GunScript : MonoBehaviour
 
                     GameObject proj = Instantiate(projectile, point.position, Quaternion.identity);
                     proj.transform.localScale = new Vector3(projectileSize, projectileSize, projectileSize);
-                    proj.GetComponent<Projectile>().damage = damage;
+                    Projectile projScript = proj.GetComponent<Projectile>();
+                    projScript.damage = damage;
+                    projScript.usingExplosive = usingExplosive;
+                    if (usingExplosive)
+                    {
+                        projScript.shardSize = upgradeExplosiveSize;
+                        projScript.shardsOnExplosion = upgradeExplosiveShards;
+                        projScript.shardForce = upgradeExplosiveForce;
+                    }
                     Rigidbody rb = proj.GetComponent<Rigidbody>();
                     rb.AddForce(transform.up * arcForce, ForceMode.Impulse);
                     rb.AddTorque(new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), ForceMode.Impulse);

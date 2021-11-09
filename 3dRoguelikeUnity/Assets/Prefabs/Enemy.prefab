@@ -886,9 +886,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 3131842870124365394}
-  spreadX: 0.21
-  spreadY: 0.24
-  spreadZ: 0.12
+  spreadX: 0.01
+  spreadY: 0.01
+  spreadZ: 0.01
   source: {fileID: 1993821453465133287}
   hitClip: {fileID: 8300000, guid: f31cf32671a8a0442a5b09e3cc296778, type: 3}
   anim: {fileID: 3131842870124365392}
@@ -902,6 +902,7 @@ MonoBehaviour:
   deathEffect: {fileID: 5137742616418530313, guid: 8e100d740209e6848b35bfc61a8bcb9b,
     type: 3}
   health: 100
+  damage: 0
   isDead: 0
   isDisabled: 1
   isAttacking: 0

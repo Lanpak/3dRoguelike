@@ -20,6 +20,7 @@ public class MapModelSelector : MonoBehaviour
 	public Vector2 pos;
 
 	public GameObject[] roomLayouts = new GameObject[1];
+	public GameObject portalLayout;
 
 
 	void Start()
@@ -191,6 +192,12 @@ public class MapModelSelector : MonoBehaviour
 			decor.GetComponent<RoomLayout>().SpawnEnemies(difficulty);
 			
 
+		}
+		else if(type == 2)
+        {
+			GameObject portal = Instantiate(portalLayout, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+			portal.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+			portal.transform.eulerAngles = new Vector3(portal.transform.eulerAngles.x + 90, portal.transform.eulerAngles.y, portal.transform.eulerAngles.z);
 		}
 	}
 

@@ -69,7 +69,6 @@ public class LevelManager : MonoBehaviour
     // 8: armour
     // 9: hp+
 
-    
     public GameObject options;
    
     
@@ -92,13 +91,8 @@ public class LevelManager : MonoBehaviour
         }
 
         //the rest of your code
-
         DontDestroyOnLoad(this.gameObject);
-        
-        
-        
-        
-    }
+       }
 
     void OnEnable()
     {
@@ -355,7 +349,13 @@ public class LevelManager : MonoBehaviour
 
     public void GoToNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if(level == levelsPerFloor)
+        {
+            sceneIndex = 2;
+        }
+
+        SceneManager.LoadScene(sceneIndex);
     }
 
     void Update()
