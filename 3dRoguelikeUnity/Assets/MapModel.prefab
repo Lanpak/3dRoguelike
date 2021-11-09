@@ -421,6 +421,8 @@ MonoBehaviour:
   - {fileID: 3438627729617019929, guid: f3fb2a22f34493f47a163b50e7cb1f9f, type: 3}
   portalLayout: {fileID: 3438627729617019929, guid: 48d7810fd41998d489f6e2f019efad01,
     type: 3}
+  bossLayout: {fileID: 3438627729617019929, guid: 48d7810fd41998d489f6e2f019efad01,
+    type: 3}
 --- !u!64 &-2576228737586698895
 MeshCollider:
   m_ObjectHideFlags: 0

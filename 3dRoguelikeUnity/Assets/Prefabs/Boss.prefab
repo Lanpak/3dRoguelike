@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 3131842870124365393}
   - component: {fileID: 1993821453465133287}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Boss
   m_TagString: Shootable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -901,8 +901,9 @@ MonoBehaviour:
     m_Bits: 2048
   deathEffect: {fileID: 5137742616418530313, guid: 8e100d740209e6848b35bfc61a8bcb9b,
     type: 3}
-  health: 100
-  damage: 20
+  health: 1000
+  damage: 34
+  isBoss: 1
   isDead: 0
   isDisabled: 1
   isAttacking: 0

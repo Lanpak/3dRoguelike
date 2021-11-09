@@ -228,28 +228,31 @@ public class GunScript : MonoBehaviour
     void Update()
     {
         HandleSway();
-
-        if(bulletsInMag != magSize && Input.GetButtonDown("Reload"))
+        if (!PauseMenu.GameIsPaused)
         {
-            Reload();
-        } 
-
-        if (fullAuto)
-        {
-            if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+            if (bulletsInMag != magSize && Input.GetButtonDown("Reload"))
             {
-                nextTimeToFire = Time.time + 1f/firingSpeed;
-                Fire();
+                Reload();
+            }
+
+            if (fullAuto)
+            {
+                if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+                {
+                    nextTimeToFire = Time.time + 1f / firingSpeed;
+                    Fire();
+                }
+            }
+            else
+            {
+                if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
+                {
+                    nextTimeToFire = Time.time + 1f / firingSpeed;
+                    Fire();
+                }
             }
         }
-        else
-        {
-            if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
-            {
-                nextTimeToFire = Time.time + 1f / firingSpeed;
-                Fire();
-            }
-        }
+        
     }
 
 

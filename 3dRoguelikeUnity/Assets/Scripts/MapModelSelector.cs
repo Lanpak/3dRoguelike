@@ -21,19 +21,22 @@ public class MapModelSelector : MonoBehaviour
 
 	public GameObject[] roomLayouts = new GameObject[1];
 	public GameObject portalLayout;
+	public GameObject bossLayout;
 
+	private LevelManager manager;
 
 	void Start()
 	{
+		manager = GameObject.Find("Manager").GetComponent<LevelManager>();
 
-		
-		
+
+
 		model = GetComponent<MeshFilter>();
 		mainColor = normalColor;
 		Pickmesh();
 		//PickColor();
 		SetupRoomLogic();
-		MakeInterior(numberOfEnemies);
+		MakeInterior(manager.enemies);
 		
 	}
 	void Pickmesh()
@@ -195,9 +198,21 @@ public class MapModelSelector : MonoBehaviour
 		}
 		else if(type == 2)
         {
-			GameObject portal = Instantiate(portalLayout, gameObject.transform.position, Quaternion.identity, gameObject.transform);
-			portal.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-			portal.transform.eulerAngles = new Vector3(portal.transform.eulerAngles.x + 90, portal.transform.eulerAngles.y, portal.transform.eulerAngles.z);
+			if(manager.floor == manager.floorsPerGame)
+            {
+				Debug.Log("made a bossroom");
+				GameObject boss = Instantiate(bossLayout, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+				boss.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+				boss.transform.eulerAngles = new Vector3(boss.transform.eulerAngles.x + 90, boss.transform.eulerAngles.y, boss.transform.eulerAngles.z);
+			}
+            else
+            {
+				GameObject portal = Instantiate(portalLayout, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+				portal.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+				portal.transform.eulerAngles = new Vector3(portal.transform.eulerAngles.x + 90, portal.transform.eulerAngles.y, portal.transform.eulerAngles.z);
+			}
+
+			
 		}
 	}
 

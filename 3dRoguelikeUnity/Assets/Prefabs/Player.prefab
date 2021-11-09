@@ -295,11 +295,12 @@ MonoBehaviour:
     type: 3}
   miniMapPosition: {fileID: 0}
   miniMapContainer: {fileID: 0}
-  takeDamageClip: {fileID: 8300000, guid: 05ea6928a01f3734a8eaa3ace8e11ae8, type: 3}
-  deathClip: {fileID: 0}
+  takeDamageClip: {fileID: 8300000, guid: df4b654832c5a6c42b4f0ffc70cc4163, type: 3}
+  deathClip: {fileID: 8300000, guid: 05ea6928a01f3734a8eaa3ace8e11ae8, type: 3}
   usingHp: 0
   usingArmour: 0
   armourEffectiveness: 0.5
+  hpSlider: {fileID: 0}
 --- !u!82 &6272870280708950516
 AudioSource:
   m_ObjectHideFlags: 0

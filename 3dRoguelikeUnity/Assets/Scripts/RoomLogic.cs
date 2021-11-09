@@ -13,8 +13,17 @@ public class RoomLogic : MonoBehaviour
     
     [SerializeField] private int howManyLive;
 
+    private LevelManager manager;
+    private MusicManager music;
+
+    private MapModelSelector mapman;
+
     void Start()
     {
+        mapman = gameObject.transform.root.GetComponent<MapModelSelector>();
+        manager = GameObject.Find("Manager").GetComponent<LevelManager>();
+        music = GameObject.Find("MusicManager").GetComponent<MusicManager>();
+
         player = GameObject.Find("Player(Clone)");
         position = room.GetComponent<MapModelSelector>().pos;
     }
@@ -29,6 +38,13 @@ public class RoomLogic : MonoBehaviour
             {
                 triggered = true;
                 Debug.Log("Player entered room!");
+
+                if(mapman.type == 2 && manager.floor == 3)
+                {
+                    StartBossRoom();
+                    Debug.Log("StartBossRoom");
+                }
+
                 StartRoom();
             }
         }
@@ -65,6 +81,17 @@ public class RoomLogic : MonoBehaviour
         MoveDoors(true);
         ReadyEnemies();
         howManyLive = enemies.transform.childCount;
+    }
+    
+    private void StartBossRoom()
+    {
+        MoveDoors(true);
+        ReadyEnemies();
+        howManyLive = enemies.transform.childCount;
+
+
+        music.StartTrack(4, 0);
+
     }
 
     private void MoveDoors(bool closing)

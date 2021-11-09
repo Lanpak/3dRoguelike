@@ -41,13 +41,22 @@ public class LevelManager : MonoBehaviour
     public int roomsPerFloor;
 
     public int enemyScaling;
+    public int enemiesPerFloor;
 
+
+    public int loadingTime;
+
+    public int enemiesKilled;
+
+    public Stopwatch timer;
 
     public LevelGeneration generator;
 
-    [SerializeField] private int floor = 1;
+    public int enemies = 1;
 
-    [SerializeField] private int level = 0;
+    [SerializeField] public int floor = 1;
+
+    [SerializeField] public int level = 0;
 
     [Header("Upgrades")]
 
@@ -115,23 +124,25 @@ public class LevelManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 1) // what to do in game mode
         {
             Cursor.visible = false;
+            
             Debug.Log("locked");
             CreateLevel();
         }
         else if(SceneManager.GetActiveScene().buildIndex == 2) // what to do in upgrade pick mode
         {
             Cursor.visible = true;
-
+            
             options = GameObject.Find("Canvas/PortalUI/Options");
 
             SpawnUpgrades();
             
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 0) // what to do in 
+        else if (SceneManager.GetActiveScene().buildIndex == 0) // what to do in main menu
         {
             Cursor.visible = true;
         }
 
+        timer = gameObject.GetComponent<Stopwatch>();
 
     }
 
@@ -162,140 +173,6 @@ public class LevelManager : MonoBehaviour
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //List<int> displayedUpgrades = new List<int>();
-        //List<int> possibleUpgrades = new List<int>();
-
-
-        //for (int i = 0; i < upgradeSlot.Length; i++)
-        //{
-        //    if (!playerUpgrades.Contains(i))
-        //    {
-        //        possibleUpgrades.Add(i);
-                
-
-        //    }
-
-
-        //}
-
-        
-
-
-
-
-        //for (int i = 0; i < upgradeChoices; i++)
-        //{
-           
-        //    int rng = Random.Range(0, possibleUpgrades.Count - 1);
-
-        //    Instantiate(upgradeSlot[possibleUpgrades[rng]], options.transform);
-        //    possibleUpgrades.RemoveAt(rng);
-
-        //    Debug.Log("Picked Value: " + possibleUpgrades[rng]);
-        //    Debug.Log("Possible Upgrades --------------------------------------------");
-
-        //    string debug = "";
-        //    foreach (int item in possibleUpgrades)
-        //    {
-        //        debug += (", " + item);
-
-        //    }
-        //    Debug.Log(debug);
-
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //List<int> displayedUpgrades = new List<int>();
-
-        //for (int i = 0; i < upgradeChoices; i++)
-        //{
-        //    List<int> possibleUpgrades = new List<int>();
-
-        //    for (int x = 0; x < upgradeSlot.Length; x++)
-        //    {
-        //        if (upgradeSlot[x] != null && !displayedUpgrades.Contains(x))
-        //        {
-        //            possibleUpgrades.Add(x);
-        //        }
-        //    }
-
-        //    if (possibleUpgrades[0] == null)
-        //    {
-        //        Debug.Log("No more possible upgrades");
-        //        return;
-        //    }
-
-        //    for (int y = 0; y < upgradeSlot.Length; y++)
-        //    {
-        //        Debug.Log(y);
-        //    }
-
-        //    int rng = Random.Range(0, possibleUpgrades.Count);
-        //    displayedUpgrades.Add(rng);
-
-        //    Debug.Log("displaying " + upgradeSlot[possibleUpgrades[rng]]);
-
-        //    Instantiate(upgradeSlot[possibleUpgrades[rng]], options.transform);
-        //    upgradeSlot[possibleUpgrades[rng]] = null;
-        //}
-
-
     }
 
 
@@ -307,7 +184,7 @@ public class LevelManager : MonoBehaviour
         //upgradeSlot[upgrade] = null;
         
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 
     private void CreateLevel()
@@ -339,7 +216,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log(startRooms + (floor * roomsPerFloor));
         Debug.Log(startRooms + " + " + floor + " x " + roomsPerFloor);
 
-        //set number of enemy spawns
+        enemies += enemiesPerFloor;
 
         generator.MakeMap();
 
@@ -349,14 +226,42 @@ public class LevelManager : MonoBehaviour
 
     public void GoToNextLevel()
     {
-        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        //int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        
+        
+
+
+
+        int sceneIndex = 3;
         if(level == levelsPerFloor)
         {
             sceneIndex = 2;
+            if(floor == floorsPerGame)
+            {
+                sceneIndex = 0;
+
+                ResetGame();
+            }
         }
 
         SceneManager.LoadScene(sceneIndex);
+
     }
+
+    void ResetGame()
+    {
+        playerUpgrades = new List<int>();
+
+        floor = 1;
+        level = 0;
+    }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 
     void Update()
     {//reload scene, for testing purposes
@@ -364,10 +269,8 @@ public class LevelManager : MonoBehaviour
         {
             GoToNextLevel();
         }
+
     }
 
-    public void MoveToFloor(int floor)
-    {
-        SceneManager.LoadScene(floor);
-    }
+    
 }

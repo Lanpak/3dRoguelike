@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Portal : MonoBehaviour
 {
-
     public LevelManager manager;
 
 
@@ -20,6 +20,7 @@ public class Portal : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             manager.GoToNextLevel();
+
 
         }
     }

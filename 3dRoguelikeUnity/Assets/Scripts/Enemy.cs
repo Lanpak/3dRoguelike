@@ -25,6 +25,10 @@ public class Enemy : MonoBehaviour
     public float health;
     public int damage;
 
+
+
+    public bool isBoss;
+
     public bool isDead = false;
     public bool isDisabled = true;
 
@@ -51,6 +55,8 @@ public class Enemy : MonoBehaviour
     private int startHealth;
     public SkinnedMeshRenderer renderer;
 
+    private LevelManager manager;
+
     public Material[] mats;
 
     private void Awake()
@@ -61,6 +67,8 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+        manager = GameObject.Find("Manager").GetComponent<LevelManager>();
+
     }
 
     private void Update()
@@ -275,7 +283,8 @@ public class Enemy : MonoBehaviour
             
             agent.SetDestination(transform.position);
             Instantiate(deathEffect, transform.position, Quaternion.identity);
-            
+
+            manager.enemiesKilled++;
             roomLogic.EnemyDied();
             Destroy(gameObject);
         }

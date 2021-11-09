@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/UpgradePick.unity
     guid: 4cee77d40a48872418eced7c2810d820
+  - enabled: 1
+    path: Assets/LoadingScene.unity
+    guid: c0c495941466a714283550925389495c
   m_configObjects: {}

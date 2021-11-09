@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -35,6 +36,12 @@ public class PlayerManager : MonoBehaviour
     public bool usingArmour;
     public float armourEffectiveness;
 
+    public PauseMenu pauseManager;
+    public MusicManager musicManager;
+
+
+    public Slider hpSlider;
+
     void Start()
     {
         manager = GameObject.Find("Manager").GetComponent<LevelManager>();
@@ -50,6 +57,12 @@ public class PlayerManager : MonoBehaviour
         //secondaryScript = secondary.GetComponent<GunScript>();
         miniMapContainer = GameObject.Find("Canvas").transform.Find("GameUI").transform.Find("Minimap").gameObject;
         miniMapPosition = miniMapContainer.transform.Find("PlayerIcon").gameObject;
+        hpSlider = GameObject.Find("Canvas").transform.Find("GameUI").transform.Find("Health").transform.Find("HP").GetComponent<Slider>();
+
+        if (usingHp)
+        {
+            hpSlider.maxValue = boostedHitpoints;
+        }
         MoveIntoRoom(0,0);
     }
 
@@ -63,6 +76,13 @@ public class PlayerManager : MonoBehaviour
         Instantiate(playerIcon, new Vector2(miniMapContainer.transform.position.x + x*25, miniMapContainer.transform.position.y + y*25), Quaternion.identity, miniMapPosition.transform);
     }
 
+
+    public void ResetPlayer()
+    {
+        hitpoints = maxHitpoints;
+
+
+    }
 
     bool rndbool
     {
@@ -82,6 +102,7 @@ public class PlayerManager : MonoBehaviour
 
             if(hitpoints - dam <= 0)
             {
+                hitpoints = 0;
                 PlayerDied();
             }
             else
@@ -118,7 +139,13 @@ public class PlayerManager : MonoBehaviour
         source.clip = deathClip;
         source.Play();
 
-        Debug.Log("WE DIED");
+        SceneManager.LoadScene(0);
     }
 
+
+
+    void Update()
+    {
+        hpSlider.value = hitpoints;
+    }
 }
